@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="HandheldFriendly" content="True" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta name="generator" content="Hugo 0.74.3" />
+
+
+
+<title>How to Integrate a C Library into an iOS App Written in Swift - Artem Garmash</title>
+
+
+<meta name="author" content="Artem Garmash" />
+
+
+
+<meta name="keywords" content="c, swift" />
+
+<meta property="og:title" content="How to Integrate a C Library into an iOS App Written in Swift" />
+<meta property="og:description" content="
+Initially, I wrote this article for Distillery Tech Blog back in 2018. I decided to copy it here for the further preservation.
+
+Nowadays, everyone values privacy and security. That’s why it wasn’t surprising when, recently, we needed to use an encryption library on one of the projects.
+For the project in question, the decision was made to use libsignal. Originally developed for Signal Private Messenger, libsignal has a good reputation among security specialists.
+Using libsignal
+At the end of July 2018, there were implementations of libsignal in C, Java, and JavaScript. There was also an implementation in Objective-C called SignalProtocolKit, but at that time it had already been deprecated.
+Our goal was to use the library in an iOS app written in Swift. To keep everything up to date, we had to use the one written in C, for which the source code is stored here. Lucky for us, Swift can interact with C code very smoothly, at minimum because some of Apple’s low-level libraries are written in C. The tricky part was to add the library to the project correctly." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://agarmash.com/posts/c-library-in-swift/" />
+<meta property="article:published_time" content="2020-09-30T13:39:08+03:00" />
+<meta property="article:modified_time" content="2020-09-30T13:39:08+03:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="How to Integrate a C Library into an iOS App Written in Swift"/>
+<meta name="twitter:description" content="
+Initially, I wrote this article for Distillery Tech Blog back in 2018. I decided to copy it here for the further preservation.
+
+Nowadays, everyone values privacy and security. That’s why it wasn’t surprising when, recently, we needed to use an encryption library on one of the projects.
+For the project in question, the decision was made to use libsignal. Originally developed for Signal Private Messenger, libsignal has a good reputation among security specialists.
+Using libsignal
+At the end of July 2018, there were implementations of libsignal in C, Java, and JavaScript. There was also an implementation in Objective-C called SignalProtocolKit, but at that time it had already been deprecated.
+Our goal was to use the library in an iOS app written in Swift. To keep everything up to date, we had to use the one written in C, for which the source code is stored here. Lucky for us, Swift can interact with C code very smoothly, at minimum because some of Apple’s low-level libraries are written in C. The tricky part was to add the library to the project correctly."/>
+
+
+
+
+
+<link rel="stylesheet" href="https://agarmash.com/assets/css/fuji.min.css" />
+
+
+
+
+
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'UA-179143853-1');
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-179143853-1"></script>
+
+
+</head>
+
+<body data-theme="auto">
+    <script data-cfasync="false">
+  
+  var fujiThemeData = localStorage.getItem('fuji_data-theme');
+  
+  if (!fujiThemeData) {
+    localStorage.setItem('fuji_data-theme', 'auto');
+  } else {
+    
+    if (fujiThemeData !== 'auto') {
+      document.body.setAttribute('data-theme', fujiThemeData === 'dark' ? 'dark' : 'light');
+    }
+  }
+</script>
+
+    <header>
+    <div class="container-lg clearfix">
+        <div class="col-12 header">
+            <a class="title-main" href="https://agarmash.com">Artem Garmash</a>
+            
+            <span class="title-sub">Software developer, hardware enthusiast, mountain bike rider, musichead</span>
+            
+        </div>
+    </div>
+</header>
+
+    <main>
+        <div class="container-lg clearfix">
+            
+            <div class="col-12 col-md-9 float-left content">
+                
+<article>
+    
+    <h2 class="post-item post-title">
+        <a href="https://agarmash.com/posts/c-library-in-swift/">How to Integrate a C Library into an iOS App Written in Swift</a>
+    </h2>
+    
+    <div class="post-item post-meta">
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-09-30</span><span><i class="iconfont icon-time-sharp"></i>&nbsp;5 minutes</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/c">c</a>&nbsp;<a href="/tags/swift">swift</a>&nbsp;</span>
+
+    </div>
+    
+    
+    
+    <div class="post-content markdown-body">
+        <blockquote>
+<p>Initially, I wrote this article for <a href="https://medium.com/@distillerytech/how-to-integrate-a-c-library-into-an-ios-app-written-in-swift-ef92c0e0d42b" target="_blank">Distillery Tech Blog</a> back in 2018. I decided to copy it here for the further preservation.</p>
+</blockquote>
+<p>Nowadays, everyone values privacy and security. That’s why it wasn’t surprising when, recently, we needed to use an encryption library on one of the projects.</p>
+<p>For the project in question, the decision was made to use libsignal. Originally developed for <a href="https://apps.apple.com/us/app/signal-private-messenger/id874139669" target="_blank">Signal Private Messenger</a>, libsignal has a good reputation among security specialists.</p>
+<h2 id="using-libsignal">Using libsignal</h2>
+<p>At the end of July 2018, there were implementations of libsignal in C, Java, and JavaScript. There was also an implementation in Objective-C called SignalProtocolKit, but at that time it had already been deprecated.</p>
+<p>Our goal was to use the library in an iOS app written in Swift. To keep everything up to date, we had to use the one written in C, for which <a href="https://github.com/signalapp/libsignal-protocol-c" target="_blank">the source code is stored here</a>. Lucky for us, Swift can interact with C code very smoothly, at minimum because some of Apple’s low-level libraries are written in C. The tricky part was to add the library to the project correctly.</p>
+<h2 id="creating-a-modulemap">Creating a module.map</h2>
+<p>After a bit of research, I figured out that I could simply add the library’s source code to the project and create a module.map file to specify which headers of the library I wanted to expose (for more detail, <a href="https://medium.com/swift-and-ios-writing/using-a-c-library-inside-a-swift-framework-d041d7b701d9" target="_blank">check out this blog</a>). libsignal contains lots of header files, but if I want to use it in a regular C project, I only have to include the one called signal_protocol.h. Since signal_protocol.h includes the other headers it depends on, just as every other header file does, we can be sure that all the files are included.
+Accordingly, I made a module.map file with the following contents:</p>
+<pre><code>module SignalProtocol [system] {
+header “src/signal_protocol.h”
+export *
+}
+</code></pre>
+<p>Then, I put it into the folder with the library sources, added it to the project, and started to test.</p>
+<p>Xcode allowed to import this module and to use some of the library functions, but some of the library components were missing. For example, I was unable to use the signal_context data type which is defined in signal_protocol_internal.h.</p>
+<p>At that moment it became obvious that Xcode doesn’t properly include nested headers. So I decided to try including all the headers from libsignal in my module.map file. (It’s redundant to put the updated module.map here, as it just includes every *.h file similar to the file above.)</p>
+<p>After I did this and tried to build to build the project, I got a lot of errors related to some of the header files from libsignal. When I took a look at them, I realized that there were some header files that were not actual headers. Instead, they store some constant values and are used as follows:</p>
+<pre><code>static const fe sqrtm1 = {
+#include “sqrtm1.h”
+} ;
+</code></pre>
+<p>As of the end of July 2018, the following files were used that way:</p>
+<pre><code>sqrtm1.h
+ge_sub.h
+pow225521.h
+ge_add.h
+d2.h
+ge_madd.h
+ge_msub.h
+pow22523.h
+ge_p2_dbl.h
+d.h
+base2.h
+base.h
+</code></pre>
+<p>Finally, after excluding these files from my module.map, I was able to build the project and use all the parts of libsignal.</p>
+<p>Was it a victory? A moderate one, I guess. Adding the sources of a third-party library directly to the project didn’t seem quite right, so we decided to wrap libsignal in the Cocoa Touch Framework.</p>
+<h2 id="wrapping-it-in-the-cocoa-touch-framework">Wrapping It in the Cocoa Touch Framework</h2>
+<p>At first, after all the previous difficulties, I thought this part would be easy. Unfortunately, I was proven wrong the exact moment I opened the Build Settings of our freshly created project framework and couldn’t find the “Swift Compiler — Search Paths” section.</p>
+<p>What followed were several attempts to include the libsignal sources in the framework. I will only describe the one that was successful.</p>
+<p>To wrap a С library in the Cocoa Touch Framework (using the example of libsignal), follow these steps:</p>
+<h3 id="1-create-a-new-project">1. Create a New Project</h3>
+<p>Create a new project. For its type, choose “Cocoa Touch Framework.”</p>
+<h3 id="2-add-source-files">2. Add Source Files</h3>
+<p>Add the source files of the library to the project.</p>
+<h3 id="3-select-headers-to-expose">3. Select Headers to Expose</h3>
+<p>Go to the project file and select your target framework. Open the “Build Phases” tab. Here, in the “Headers” section, all the headers from the library should appear. Decide which ones to expose by dragging them to the “Public” list. In the case of libsignal, I decided to make all the headers public.</p>
+<p>By the way, here you should have all the *.h files, even those that just store constants.</p>
+<p><img class="img-zoomable" src="/c-library-in-swift/1.png" alt="Headers in Build Phases" />
+</p>
+<h3 id="4-import-headers">4. Import Headers</h3>
+<p>Now, since all the headers have been added to your project, you have to import them into the main header of the framework, which should be called [your framework name].h and placed in the root directory of the framework. Add the following line for every actual header, omitting those that just store constants:</p>
+<pre><code>#import “protocol.h”
+</code></pre>
+<p>Note that, since we added all headers to the project file, we only have to use filename without specifying the whole path to the file in the project. It works this way because all of the headers are copied inside the framework bundle, and all paths inside the project become invalid.</p>
+<p><img class="img-zoomable" src="/c-library-in-swift/2.png" alt="Headers in main header" />
+</p>
+<p>Voilà! You should have a fully functioning framework.</p>
+<p>Do note, however, that at the moment, it has one major disadvantage: It keeps a particular version of libsignal and doesn’t allow you to update it from its GitHub repository. That issue, however, is outside the scope of this article.</p>
+    </div>
+</article>
+
+
+
+
+            </div>
+            <aside class="col-12 col-md-3 float-left sidebar">
+    
+    <div class="sidebar-item sidebar-pages">
+        <h3>Pages</h3>
+        <ul>
+            
+            <li>
+                <a href="/">Home</a>
+            </li>
+            
+            <li>
+                <a href="/about/">About me</a>
+            </li>
+            
+            <li>
+                <a href="/index.xml">RSS</a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-tags">
+        <h3>Tags</h3>
+        <div>
+            
+            <span>
+                <a href="/tags/c/">c</a>
+            </span>
+            
+            <span>
+                <a href="/tags/swift/">swift</a>
+            </span>
+            
+        </div>
+    </div>
+    
+    <div class="sidebar-item sidebar-links">
+        <h3>Links</h3>
+        <ul>
+            
+            <li>
+                <a href="https://github.com/agarmash" target="_blank"><span>GitHub</span></a>
+            </li>
+            
+            <li>
+                <a href="https://www.linkedin.com/in/artem-garmash/" target="_blank"><span>LinkedIn</span></a>
+            </li>
+            
+            <li>
+                <a href="https://twitter.com/agarmash_" target="_blank"><span>Twitter</span></a>
+            </li>
+            
+            <li>
+                <a href="https://www.strava.com/athletes/47538392" target="_blank"><span>Strava</span></a>
+            </li>
+            
+            <li>
+                <a href="https://www.last.fm/user/arch_saint" target="_blank"><span>Last.fm</span></a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    
+    
+    <div class="sidebar-item sidebar-toc">
+        <h3>TOC</h3>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#using-libsignal">Using libsignal</a></li>
+    <li><a href="#creating-a-modulemap">Creating a module.map</a></li>
+    <li><a href="#wrapping-it-in-the-cocoa-touch-framework">Wrapping It in the Cocoa Touch Framework</a>
+      <ul>
+        <li><a href="#1-create-a-new-project">1. Create a New Project</a></li>
+        <li><a href="#2-add-source-files">2. Add Source Files</a></li>
+        <li><a href="#3-select-headers-to-expose">3. Select Headers to Expose</a></li>
+        <li><a href="#4-import-headers">4. Import Headers</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+    
+</aside>
+        </div>
+        <div class="btn">
+    <div class="btn-toggle-mode">
+        <i class="iconfont icon-contrast-sharp"></i>
+    </div>
+    <div class="btn-scroll-top">
+        <i class="iconfont icon-chevron-up-circle-sharp"></i>
+    </div>
+</div>
+    </main>
+
+    <footer>
+    <div class="container-lg clearfix">
+        <div class="col-12 footer">
+            <span>&copy; 2020 <a href="https://agarmash.com">Artem Garmash</a> |
+                Powered by <a href="https://gohugo.io/"
+                target="_blank">Hugo</a> & modified <a href="https://github.com/amzrk2/hugo-theme-fuji/"
+                   target="_blank">Fuji-v2</a> </span>
+        </div>
+    </div>
+</footer>
+    
+<script defer src="https://cdn.jsdelivr.net/combine/npm/medium-zoom@1.0.6,npm/lazysizes@5.2.2"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.21.0/components/prism-core.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.21.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+
+
+<script defer src="/assets/js/fuji.min.js"></script>
+
+
+</body>
+
+</html>
