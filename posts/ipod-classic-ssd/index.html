@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="HandheldFriendly" content="True" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta name="generator" content="Hugo 0.74.3" />
+
+
+
+<title>A journey of putting an SSD into an iPod with Rockbox - Artem Garmash</title>
+
+
+<meta name="author" content="Artem Garmash" />
+
+
+
+<meta name="keywords" content="ipod, ssd, rockbox" />
+
+<meta property="og:title" content="A journey of putting an SSD into an iPod with Rockbox" />
+<meta property="og:description" content="When the whole world was switching to streaming services, I bought an iPod classic 5.5th generation. An independent device with locally stored music in lossless quality and decent audio codec was, and still is quite appealing for me. And as for me, its design is everlasting, a 14 y/o device still feels great and gets a lot of attention.
+The only drawback was storage capacity - mine one had a 30 GB HDD, and although it was possible to find a unit with 80 gigs, it also wouldn&rsquo;t be sufficient. Another option was to get a 6/7 generation one with 160 GB HDD, but I wanted to stay with the 5.5th gen unit." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://agarmash.com/posts/ipod-classic-ssd/" />
+<meta property="article:published_time" content="2020-10-15T09:08:19+03:00" />
+<meta property="article:modified_time" content="2020-10-15T09:08:19+03:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="A journey of putting an SSD into an iPod with Rockbox"/>
+<meta name="twitter:description" content="When the whole world was switching to streaming services, I bought an iPod classic 5.5th generation. An independent device with locally stored music in lossless quality and decent audio codec was, and still is quite appealing for me. And as for me, its design is everlasting, a 14 y/o device still feels great and gets a lot of attention.
+The only drawback was storage capacity - mine one had a 30 GB HDD, and although it was possible to find a unit with 80 gigs, it also wouldn&rsquo;t be sufficient. Another option was to get a 6/7 generation one with 160 GB HDD, but I wanted to stay with the 5.5th gen unit."/>
+
+
+
+
+
+<link rel="stylesheet" href="https://agarmash.com/assets/css/fuji.min.css" />
+
+
+
+
+
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'UA-179143853-1');
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-179143853-1"></script>
+
+
+</head>
+
+<body data-theme="auto">
+    <script data-cfasync="false">
+  
+  var fujiThemeData = localStorage.getItem('fuji_data-theme');
+  
+  if (!fujiThemeData) {
+    localStorage.setItem('fuji_data-theme', 'auto');
+  } else {
+    
+    if (fujiThemeData !== 'auto') {
+      document.body.setAttribute('data-theme', fujiThemeData === 'dark' ? 'dark' : 'light');
+    }
+  }
+</script>
+
+    <header>
+    <div class="container-lg clearfix">
+        <div class="col-12 header">
+            <a class="title-main" href="https://agarmash.com">Artem Garmash</a>
+            
+            <span class="title-sub">Software developer, hardware enthusiast, mountain bike rider, musichead</span>
+            
+        </div>
+    </div>
+</header>
+
+    <main>
+        <div class="container-lg clearfix">
+            
+            <div class="col-12 col-md-9 float-left content">
+                
+<article>
+    
+    <h2 class="post-item post-title">
+        <a href="https://agarmash.com/posts/ipod-classic-ssd/">A journey of putting an SSD into an iPod with Rockbox</a>
+    </h2>
+    
+    <div class="post-item post-meta">
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-10-15</span><span><i class="iconfont icon-time-sharp"></i>&nbsp;6 minutes</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/ipod">ipod</a>&nbsp;<a href="/tags/ssd">ssd</a>&nbsp;<a href="/tags/rockbox">rockbox</a>&nbsp;</span>
+
+    </div>
+    
+    
+    
+    <div class="post-content markdown-body">
+        <p>When the whole world was switching to streaming services, I bought an iPod classic 5.5th generation. An independent device with locally stored music in lossless quality and decent audio codec was, and still is quite appealing for me. And as for me, its design is everlasting, a 14 y/o device still feels great and gets a lot of attention.</p>
+<p>The only drawback was storage capacity - mine one had a 30 GB HDD, and although it was possible to find a unit with 80 gigs, it also wouldn&rsquo;t be sufficient. Another option was to get a 6/7 generation one with 160 GB HDD, but I wanted to stay with the 5.5th gen unit.</p>
+<h2 id="hardware-mod">Hardware mod</h2>
+<p>5th generation of iPods uses 1.8&rdquo; ZIF HDD, which has an IDE interface with a different shaped connector. There is a number of available replacements:</p>
+<ul>
+<li>SD or CompactFlash adapter with the corresponding memory card — both adapter and large memory card are pricey, but among modding scene, it was the most popular option;</li>
+<li>1.8&rdquo; SSD with ZIF connector — quite a niche thing, which also makes it rather expensive;</li>
+<li>mSATA SSD with the adapter to ZIF — the least popular option for modding an iPod, but compared to the other options, was the best bang for the buck.</li>
+</ul>
+<p>The last option was the most compelling for me, so I ordered an mSATA to ZIF adapter based on JM20330 chip (you can find it on eBay searching for &ldquo;zif msata&rdquo;) and a 250 GB Samsung 850 EVO mSATA SSD (its predecessor, 840 EVO had <a href="https://www.anandtech.com/show/7594/samsung-ssd-840-evo-msata-120gb-250gb-500gb-1tb-review/8" target="_blank">one of the greatest power characteristics</a>, so it was a good choice). Also, I ordered some generic mSATA to regular SATA adapter, which unexpectedly played a great role in the whole project.</p>
+<p><img class="img-zoomable" src="/ipod-classic-ssd/1.jpg" alt="The ingredients" />
+</p>
+<blockquote>
+<p>Fun fact: 5th generation of iPod has <a href="http://www.ipodlinux.org/Generations/" target="_blank">32 or 64 MB of SDRAM memory</a> (depending on stock HDD capacity), while the ordered SSD has <a href="https://www.samsung.com/semiconductor/minisite/ssd/product/consumer/850evo/" target="_blank">512 MB of LPDDR3</a>.</p>
+</blockquote>
+<p>When all the parts were delivered, at first I took the spare back cover and the main chassis from another dead iPod and put the mSATA-ZIF adapter between them. As you can see, the clearance was quite tight, there was less than a millimeter for adhesive and isolation.</p>
+<p><img class="img-zoomable" src="/ipod-classic-ssd/2.jpg" alt="Too thick to fit" />
+</p>
+<p>At first, I thought of getting a back cover from a 60/80 GB unit, which is thicker, but I wanted to keep an old thin one. Also, when the SSD was plugged into the adapter, there was a noticeable gap between boards, which was quite a waste of space.</p>
+<p><img class="img-zoomable" src="/ipod-classic-ssd/3.jpg" alt="Gap between the boards" />
+</p>
+<p>Then I took a look at the SATA-mSATA adapter and noticed that it had a connector with the same footprint, but was a bit shorter.</p>
+<p><img class="img-zoomable" src="/ipod-classic-ssd/4.jpg" alt="Similar connectors" />
+</p>
+<p>Stacking boards together showed that the connectors&rsquo; height difference was very similar to the size of the gap between SSD and mSATA-ZIF adapter.</p>
+<p><img class="img-zoomable" src="/ipod-classic-ssd/5.jpg" alt="Height difference" />
+</p>
+<p>Delighted with this coincidence, I took my Rose&rsquo;s metal and hot air soldering station, swapped the connectors, and filed down mounting standoffs to the correct height.</p>
+<p><img class="img-zoomable" src="/ipod-classic-ssd/6.jpg" alt="Replaced connector" />
+</p>
+<p>After doing that, the SSD was flush with the mSATA-ZIF adapter board.</p>
+<p><img class="img-zoomable" src="/ipod-classic-ssd/7.jpg" alt="No more gap" />
+</p>
+<p>So I put a piece of isolation between the boards, plugged the SSD into the adapter, and tightened the mounting screws.</p>
+<p><img class="img-zoomable" src="/ipod-classic-ssd/8.jpg" alt="PCB sandwich" />
+</p>
+<p>When I put the resulting sandwich between spare iPod&rsquo;s case parts, there were almost 2 millimeters of clearance, which was more than enough for securing the new components in place.</p>
+<p><img class="img-zoomable" src="/ipod-classic-ssd/9.jpg" alt="Thin enough" />
+</p>
+<p>After that, I put a layer of isolation to the back cover, added another piece of isolation to the backside of the adaptor board, plugged the ZIF flex cable to the adapter, secured it on the chassis with double-sided tape, and added stripes of packaging material to fill the void space.</p>
+<p><img class="img-zoomable" src="/ipod-classic-ssd/10.jpg" alt="Almost assembled" />
+</p>
+<p>I wanted my iPod to be formatted in FAT32, so I had to use iTunes on Windows PC. After connecting an iPod I tried to restore it with iTunes, but the process was aborted with an error. After some troubleshooting, I figured out that the problem was in the NTFS partition on the SSD, which I created earlier to test the drive. I formatted it externally in FAT32, put back into the iPod and this time was able to restore it with iTunes.</p>
+<p><img class="img-zoomable" src="/ipod-classic-ssd/11.jpg" alt="Assembled and booted" />
+</p>
+<p>The device was working and this could be the end of the story, but I decided to install Rockbox.</p>
+<h2 id="rockbox">Rockbox</h2>
+<p>After the trivial process of <a href="https://www.rockbox.org/download/" target="_blank">installing</a> the custom firmware with Rockbox Utility and rebooting the iPod, I was greeted with the <code>ATA error: -11</code>. At the same time, stock firmware was still working fine. After some googling, I found a <a href="https://forums.rockbox.org/index.php/topic,42523.0.html" target="_blank">thread on Rockbox Forums</a>, where the problem was investigated by the development team and solved by the user <strong>beyondwind</strong>. He also started a <a href="https://www.head-fi.org/threads/rockbox-for-ipod-video-5th-5-5th-msata-ssd-mod.707618/" target="_blank">thread on Head-Fi Forums</a>, where he posted some additional information. Unfortunately, at the moment of doing the mod, his website was down. Although it was possible <a href="https://web.archive.org/web/20160711174105/http://beyondwind.duckdns.org/?page_id=58" target="_blank">to take</a> <a href="https://web.archive.org/web/20160209164058/http://beyondwind.duckdns.org/downloads/" target="_blank">a glance</a> at it with help of Wayback Machine, almost all the content was unavailable. All, except the file <a href="/ipod-classic-ssd/ipod5g_msata_mod.patch">ipod5g_msata_mod.patch</a>, which undoubtedly was the most important. Also, it was saved on <a href="https://gist.github.com/anonymous/5f3bcab69a01fdfa9f47bac73b74cf10/archive/ea12373570d0cb0e78286c64112927162b77c2e6.zip" target="_blank">GitHub Gist</a> by <a href="https://forums.rockbox.org/index.php/topic,42523.msg238658.html#msg238658" target="_blank">one of the users at Rockbox Forums</a>.</p>
+<p>So, with the patch in my possession, it was possible to build a patched firmware myself. Fortunately, Rockbox Wiki has a <a href="https://www.rockbox.org/wiki/DevelopmentGuide" target="_blank">detailed guide</a> for building firmware from scratch. The steps for doing so are well described, but I have some notes to make.</p>
+<h3 id="1-getting-the-source">1. Getting the source</h3>
+<p>After cloning the repository, you can already apply the patch. It can be done with a bash command <code>patch -p1 &lt; path_to_file</code>.
+Important notice about the patch file — the initial version had some changes for the plugin <code>test_disk.c</code> and included it in the regular build. The plugin code was highly modified since then and this part of the patch wasn&rsquo;t applicable anymore, so I made the <a href="ipod5g_msata_mod_wo_plugin.patch">patch file</a> without the mentioned pieces.</p>
+<h3 id="2-building-a-cross-compiler">2. Building a cross-compiler</h3>
+<p>Automatic build works fine, but there are 3 caveats:</p>
+<ul>
+<li>I had a lot of difficulties building it on macOS Catalina. After 2 evenings of figuring out the origins of an endless stream of errors, I fired up a VM with Ubuntu 20.04.1 and was able to build the cross-compiler from one of the first tries. Although, a few years ago, when I built it for the first time, I was able to do it without a headache on macOS Sierra;</li>
+<li>The master branch sometimes can be broken. If you have difficulties with building, try checking out a bit earlier commit. For example, <a href="https://git.rockbox.org/cgit/rockbox.git/commit/?id=f68463c53e1fe8c292dcb66098a1caf4c688e1d2" target="_blank">this one</a> worked fine when I was building on Ubuntu;</li>
+<li>Make sure that all the dependencies listed on the <a href="https://www.rockbox.org/wiki/CrossCompiler" target="_blank">wiki page</a> are installed — initially, I have issues because of lacking <code>texinfo</code>.</li>
+</ul>
+<h3 id="3-building-rockbox">3. Building Rockbox</h3>
+<p>Fortunately, there were no issues here!</p>
+<p>If everything was done correctly, after copying the freshly built <code>.rockbox</code> directory to the iPod it should <a href="https://techcrunch.com/2011/06/08/apple-icloud-google-cloud/" target="_blank">just work</a>. Finally, it&rsquo;s time to copy some tunes and listen to them on your modded device!</p>
+<p><img class="img-zoomable" src="/ipod-classic-ssd/12.jpg" alt="Booted into Rockbox" />
+</p>
+<p>And also, there&rsquo;s a <a href="rockbox.zip">patched build</a> if you need it but don&rsquo;t want to deal with patching and building.</p>
+<h2 id="afterword">Afterword</h2>
+<p>I accomplished this mod in January 2018 and was using the device almost every day since then. Later, I had to replace a battery because the old one dies of old age, but even with the old battery, there were no issues. Battery life is great, access time is instantaneous, and the weight loss is quite perceptible (an old HDD weight is close to the weight of the rest of the iPod). I&rsquo;d recommend doing it to everyone who wants to give a second life to this classic device!</p>
+<h2 id="files">Files</h2>
+<ul>
+<li><strong><a href="/ipod-classic-ssd/ipod5g_msata_mod.patch">ipod5g_msata_mod.patch</a></strong> — initial patch file by <strong>beyondwind</strong>;</li>
+<li><strong><a href="/ipod-classic-ssd/ipod5g_msata_mod_wo_plugin.patch">ipod5g_msata_mod_wo_plugin.patch</a></strong> — modified patch with removed changes for <code>test_disk.c</code> plugin, prefered for using;</li>
+<li><strong><a href="/ipod-classic-ssd/rockbox_msata_mod.zip">rockbox_msata_mod.zip</a></strong> — patched build from <a href="https://git.rockbox.org/cgit/rockbox.git/commit/?id=f68463c53e1fe8c292dcb66098a1caf4c688e1d2" target="_blank">this</a> commit.</li>
+</ul>
+    </div>
+</article>
+
+
+
+
+            </div>
+            <aside class="col-12 col-md-3 float-left sidebar">
+    
+    <div class="sidebar-item sidebar-pages">
+        <h3>Pages</h3>
+        <ul>
+            
+            <li>
+                <a href="/">Home</a>
+            </li>
+            
+            <li>
+                <a href="/about/">About me</a>
+            </li>
+            
+            <li>
+                <a href="/index.xml">RSS</a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-tags">
+        <h3>Tags</h3>
+        <div>
+            
+            <span>
+                <a href="/tags/c/">c</a>
+            </span>
+            
+            <span>
+                <a href="/tags/ipod/">ipod</a>
+            </span>
+            
+            <span>
+                <a href="/tags/rockbox/">rockbox</a>
+            </span>
+            
+            <span>
+                <a href="/tags/ssd/">ssd</a>
+            </span>
+            
+            <span>
+                <a href="/tags/swift/">swift</a>
+            </span>
+            
+        </div>
+    </div>
+    
+    <div class="sidebar-item sidebar-links">
+        <h3>Links</h3>
+        <ul>
+            
+            <li>
+                <a href="https://github.com/agarmash" target="_blank"><span>GitHub</span></a>
+            </li>
+            
+            <li>
+                <a href="https://www.linkedin.com/in/artem-garmash/" target="_blank"><span>LinkedIn</span></a>
+            </li>
+            
+            <li>
+                <a href="https://twitter.com/agarmash_" target="_blank"><span>Twitter</span></a>
+            </li>
+            
+            <li>
+                <a href="https://stackoverflow.com/users/7696358/artem-garmash" target="_blank"><span>Stack Overflow</span></a>
+            </li>
+            
+            <li>
+                <a href="https://www.strava.com/athletes/47538392" target="_blank"><span>Strava</span></a>
+            </li>
+            
+            <li>
+                <a href="https://www.last.fm/user/arch_saint" target="_blank"><span>Last.fm</span></a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    
+    
+    <div class="sidebar-item sidebar-toc">
+        <h3>TOC</h3>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#hardware-mod">Hardware mod</a></li>
+    <li><a href="#rockbox">Rockbox</a>
+      <ul>
+        <li><a href="#1-getting-the-source">1. Getting the source</a></li>
+        <li><a href="#2-building-a-cross-compiler">2. Building a cross-compiler</a></li>
+        <li><a href="#3-building-rockbox">3. Building Rockbox</a></li>
+      </ul>
+    </li>
+    <li><a href="#afterword">Afterword</a></li>
+    <li><a href="#files">Files</a></li>
+  </ul>
+</nav>
+    </div>
+    
+    
+</aside>
+        </div>
+        <div class="btn">
+    <div class="btn-toggle-mode">
+        <i class="iconfont icon-contrast-sharp"></i>
+    </div>
+    <div class="btn-scroll-top">
+        <i class="iconfont icon-chevron-up-circle-sharp"></i>
+    </div>
+</div>
+    </main>
+
+    <footer>
+    <div class="container-lg clearfix">
+        <div class="col-12 footer">
+            <span>&copy; 2020 <a href="https://agarmash.com">Artem Garmash</a> |
+                Powered by <a href="https://gohugo.io/"
+                target="_blank">Hugo</a> & modified <a href="https://github.com/amzrk2/hugo-theme-fuji/"
+                   target="_blank">Fuji-v2</a> </span>
+        </div>
+    </div>
+</footer>
+    
+<script defer src="https://cdn.jsdelivr.net/combine/npm/medium-zoom@1.0.6,npm/lazysizes@5.2.2"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.21.0/components/prism-core.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.21.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+
+
+<script defer src="/assets/js/fuji.min.js"></script>
+
+
+</body>
+
+</html>

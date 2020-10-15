@@ -1,0 +1,179 @@
+diff --git a/firmware/drivers/ata.c b/firmware/drivers/ata.c
+index ec04ac1..e4d4e39 100644
+--- a/firmware/drivers/ata.c
++++ b/firmware/drivers/ata.c
+@@ -209,6 +209,14 @@ static ICODE_ATTR int wait_for_bsy(void)
+ {
+     long timeout = current_tick + HZ*30;
+     
++    /*
++	need to wait before reading status according to ATA specification
++	instead of using sleep function, read ATA_STATUS 3 times and 
++	discard the first two reads, pio timing 120ns *3 dealy, 
++	*/
++	ATA_IN8(ATA_STATUS);
++	ATA_IN8(ATA_STATUS);
++    
+     do 
+     {
+         if (!(ATA_IN8(ATA_STATUS) & STATUS_BSY))
+@@ -388,8 +396,11 @@ static int ata_transfer_sectors(unsigned long start,
+ 
+     timeout = current_tick + READWRITE_TIMEOUT;
+ 
++/*  nothing to select for single drive
+     ATA_OUT8(ATA_SELECT, ata_device);
+-    if (!wait_for_rdy())
++*/
++
++    if (!wait_for_bsy())
+     {
+         ret = -3;
+         goto error;
+@@ -447,13 +458,15 @@ static int ata_transfer_sectors(unsigned long start,
+ #endif
+         }
+ 
+-        /* wait at least 400ns between writing command and reading status */
+-        __asm__ volatile ("nop");
++        /* wait at least 400ns between writing command and reading status
++		we might have a problem here because the delay here is CPU frequency dependent
++		move this delay to wait_for_bsy() and use IO delay.		
++		*/
++/*       __asm__ volatile ("nop");
+         __asm__ volatile ("nop");
+         __asm__ volatile ("nop");
+         __asm__ volatile ("nop");
+-        __asm__ volatile ("nop");
+-
++*/
+ #ifdef HAVE_ATA_DMA
+         if (usedma) {
+             if (!ata_dma_finish())
+@@ -1022,7 +1035,7 @@ static int identify(void)
+ {
+     int i;
+ 
+-    ATA_OUT8(ATA_SELECT, ata_device);
++//    ATA_OUT8(ATA_SELECT, ata_device);
+ 
+     if(!wait_for_rdy()) {
+         DEBUGF("identify() - not RDY\n");
+@@ -1057,7 +1070,9 @@ static int perform_soft_reset(void)
+ 
+     ATA_OUT8(ATA_SELECT, SELECT_LBA | ata_device );
+     ATA_OUT8(ATA_CONTROL, CONTROL_nIEN|CONTROL_SRST );
+-    sleep(1); /* >= 5us */
++
++/*the delay here is unnecessary*/
++//    sleep(1); /* >= 5us */
+ 
+ #ifdef HAVE_ATA_DMA
+     /* DMA requires INTRQ be enabled */
+@@ -1065,7 +1080,13 @@ static int perform_soft_reset(void)
+ #else
+     ATA_OUT8(ATA_CONTROL, CONTROL_nIEN);
+ #endif
+-    sleep(1); /* >2ms */
++
++/*we've been sleep too long here, some drives (flash drives) might have already 
++fall into sleep mode during the 1sec sleep, subsequently lock into soft_reset loop.
++This could be the cause of "sucker" of 30 seconds or freeze. As we have already added the 400us
++delay in wait_for_bsy(), which is called in wait_for_rdy(), no more wait is needed here.
++*/
++//    sleep(1); /* >2ms */
+ 
+     /* This little sucker can take up to 30 seconds */
+     retry_count = 8;
+diff --git a/firmware/export/config/ipodvideo.h b/firmware/export/config/ipodvideo.h
+index 707c7d9..1d36ea1 100644
+--- a/firmware/export/config/ipodvideo.h
++++ b/firmware/export/config/ipodvideo.h
+@@ -241,6 +241,7 @@
+  */
+ #ifndef BOOTLOADER
+ #define HAVE_ATA_DMA
++#define ATA_DMA_WRITES
+ #endif
+ 
+ /* Define this if a programmable hotkey is mapped */
+diff --git a/firmware/target/arm/pp/ata-pp5020.c b/firmware/target/arm/pp/ata-pp5020.c
+index 1fc302a..aacb988 100644
+--- a/firmware/target/arm/pp/ata-pp5020.c
++++ b/firmware/target/arm/pp/ata-pp5020.c
+@@ -42,6 +42,22 @@ bool ata_is_coldstart()
+     /* TODO: Implement coldstart variable */
+ }
+ 
++/* These are PIO timings for 80 Mhz.  At 24 Mhz, 
++   the first value is 0 but the rest are the same.
++   They go in IDE0_PRI_TIMING0.
++   
++   Rockbox used 0x10, and test_disk shows that leads to faster PIO.   
++   If 0x10 is incorrect, these timings may be needed with some devices.
++*/
++static const unsigned long pio80mhz[] = {
++    0xC293, 0x43A2, 0x11A1, 0x7232, 0x3131
++}; 
++
++/* Setup the timing for PIO mode */
++void ata_set_pio_timings(int mode){
++	IDE0_PRI_TIMING0 = pio80mhz[mode];
++};
++
+ void ata_device_init()
+ {
+ #ifdef SAMSUNG_YH920
+@@ -63,21 +79,14 @@ void ata_device_init()
+ #endif
+ #endif
+ 
+-    IDE0_PRI_TIMING0 = 0x10;
+-    IDE0_PRI_TIMING1 = 0x80002150;
++	/* set timing for pio mode4, it is very unlikely the the HDD is not support 
++	pio mode4, and crucial M500 mSATA drive only support pio mode 3 & 4 according 
++	to micron datasheet
++	*/
++	IDE0_PRI_TIMING0 = pio80mhz[4]; 
++    IDE0_PRI_TIMING1 = 0x80003371; //udma 2 timing
+ }
+ 
+-/* These are PIO timings for 80 Mhz.  At 24 Mhz, 
+-   the first value is 0 but the rest are the same.
+-   They go in IDE0_PRI_TIMING0.
+-   
+-   Rockbox used 0x10, and test_disk shows that leads to faster PIO.   
+-   If 0x10 is incorrect, these timings may be needed with some devices.
+-static const unsigned long pio80mhz[] = {
+-    0xC293, 0x43A2, 0x11A1, 0x7232, 0x3131
+-}; 
+-*/
+-
+ #ifdef HAVE_ATA_DMA
+ /* Timings for multi-word and ultra DMA modes.
+    These go in IDE0_PRI_TIMING1
+diff --git a/firmware/target/arm/pp/ata-target.h b/firmware/target/arm/pp/ata-target.h
+index b888f85..b3e4f79 100644
+--- a/firmware/target/arm/pp/ata-target.h
++++ b/firmware/target/arm/pp/ata-target.h
+@@ -52,7 +52,7 @@
+ /* asm optimized reading and writing */
+ #define ATA_OPTIMIZED_READING
+ #define ATA_OPTIMIZED_WRITING
+-
++#define ATA_SET_PIO_TIMING
+ #endif /* CONFIG_CPU */
+ 
+ #ifdef HAVE_ATA_DMA
+@@ -72,7 +72,7 @@
+  * UDMA 1 is stable at 24 Mhz.
+  */
+ #if CPUFREQ_NORMAL >= 30000000
+-#define ATA_MAX_UDMA 2
++#define ATA_MAX_UDMA 4
+ #elif CPUFREQ_NORMAL >= 24000000
+ #define ATA_MAX_UDMA 1
+ #else
+-- 
+2.8.0
+

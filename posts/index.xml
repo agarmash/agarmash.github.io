@@ -6,10 +6,20 @@
     <description>Recent content in Posts on Artem Garmash</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 30 Sep 2020 13:39:08 +0300</lastBuildDate>
+    <lastBuildDate>Thu, 15 Oct 2020 09:08:19 +0300</lastBuildDate>
     
 	<atom:link href="https://agarmash.com/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>A journey of putting an SSD into an iPod with Rockbox</title>
+      <link>https://agarmash.com/posts/ipod-classic-ssd/</link>
+      <pubDate>Thu, 15 Oct 2020 09:08:19 +0300</pubDate>
+      
+      <guid>https://agarmash.com/posts/ipod-classic-ssd/</guid>
+      <description>&lt;p&gt;When the whole world was switching to streaming services, I bought an iPod classic 5.5th generation. An independent device with locally stored music in lossless quality and decent audio codec was, and still is quite appealing for me. And as for me, its design is everlasting, a 14 y/o device still feels great and gets a lot of attention.&lt;/p&gt;
+&lt;p&gt;The only drawback was storage capacity - mine one had a 30 GB HDD, and although it was possible to find a unit with 80 gigs, it also wouldn&amp;rsquo;t be sufficient. Another option was to get a 6/7 generation one with 160 GB HDD, but I wanted to stay with the 5.5th gen unit.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>How to Integrate a C Library into an iOS App Written in Swift</title>
