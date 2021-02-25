@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="HandheldFriendly" content="True" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta name="generator" content="Hugo 0.80.0" />
+
+
+
+<title>Building a Wireless Receiver for Xbox 360 Controllers From a Broken Xbox 360 Console - Artem Garmash</title>
+
+
+<meta name="author" content="Artem Garmash" />
+
+
+
+<meta name="keywords" content="xbox, avr" />
+
+<meta property="og:title" content="Building a Wireless Receiver for Xbox 360 Controllers From a Broken Xbox 360 Console" />
+<meta property="og:description" content="I&rsquo;ve accomplished this little project back in 2016 when I had two Xbox 360 wireless controllers and a huge desire to use them with a PC. To do so, you have to have a wireless receiver, and there were 2 mainstream options on the market:
+
+a genuine one - the best option, but costs around $60;
+an unofficial replica - can be found for $10-15, but reliability and driver support were quite questionable.
+
+At that moment, I was short of money to get the first one and didn&rsquo;t want to try luck with the second. Fortunately, if you dive a bit deeper into the topic and doesn&rsquo;t afraid to do some soldering, there&rsquo;s a third option - using an RF module from a broken Xbox 360 (later in the text I&rsquo;ll refer to it just as &ldquo;RF module&rdquo;)." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://agarmash.com/posts/xbox-360-controller-receiver/" />
+<meta property="article:published_time" content="2021-02-25T09:08:19+03:00" />
+<meta property="article:modified_time" content="2021-02-25T09:08:19+03:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Building a Wireless Receiver for Xbox 360 Controllers From a Broken Xbox 360 Console"/>
+<meta name="twitter:description" content="I&rsquo;ve accomplished this little project back in 2016 when I had two Xbox 360 wireless controllers and a huge desire to use them with a PC. To do so, you have to have a wireless receiver, and there were 2 mainstream options on the market:
+
+a genuine one - the best option, but costs around $60;
+an unofficial replica - can be found for $10-15, but reliability and driver support were quite questionable.
+
+At that moment, I was short of money to get the first one and didn&rsquo;t want to try luck with the second. Fortunately, if you dive a bit deeper into the topic and doesn&rsquo;t afraid to do some soldering, there&rsquo;s a third option - using an RF module from a broken Xbox 360 (later in the text I&rsquo;ll refer to it just as &ldquo;RF module&rdquo;)."/>
+
+
+
+
+
+<link rel="stylesheet" href="https://agarmash.com/assets/css/fuji.min.css" />
+
+
+
+
+
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'UA-179143853-1');
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-179143853-1"></script>
+
+
+</head>
+
+<body data-theme="auto">
+    <script data-cfasync="false">
+  
+  var fujiThemeData = localStorage.getItem('fuji_data-theme');
+  
+  if (!fujiThemeData) {
+    localStorage.setItem('fuji_data-theme', 'auto');
+  } else {
+    
+    if (fujiThemeData !== 'auto') {
+      document.body.setAttribute('data-theme', fujiThemeData === 'dark' ? 'dark' : 'light');
+    }
+  }
+</script>
+
+    <header>
+    <div class="container-lg clearfix">
+        <div class="col-12 header">
+            <a class="title-main" href="https://agarmash.com">Artem Garmash</a>
+            
+            <span class="title-sub">Software developer, hardware enthusiast, mountain bike rider, musichead</span>
+            
+        </div>
+    </div>
+</header>
+
+    <main>
+        <div class="container-lg clearfix">
+            
+            <div class="col-12 col-md-9 float-left content">
+                
+<article>
+    
+    <h2 class="post-item post-title">
+        <a href="https://agarmash.com/posts/xbox-360-controller-receiver/">Building a Wireless Receiver for Xbox 360 Controllers From a Broken Xbox 360 Console</a>
+    </h2>
+    
+    <div class="post-item post-meta">
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2021-02-25</span><span><i class="iconfont icon-time-sharp"></i>&nbsp;6 minutes</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/xbox">xbox</a>&nbsp;<a href="/tags/avr">avr</a>&nbsp;</span>
+
+    </div>
+    
+    
+    
+    <div class="post-content markdown-body">
+        <p>I&rsquo;ve accomplished this little project back in 2016 when I had two Xbox 360 wireless controllers and a huge desire to use them with a PC. To do so, you have to have a wireless receiver, and there were 2 mainstream options on the market:</p>
+<ul>
+<li>a genuine one - the best option, but costs around $60;</li>
+<li>an unofficial replica - can be found for $10-15, but reliability and driver support were quite questionable.</li>
+</ul>
+<p>At that moment, I was short of money to get the first one and didn&rsquo;t want to try luck with the second. Fortunately, if you dive a bit deeper into the topic and doesn&rsquo;t afraid to do some soldering, there&rsquo;s a third option - using an RF module from a broken Xbox 360 (later in the text I&rsquo;ll refer to it just as &ldquo;RF module&rdquo;).</p>
+<blockquote>
+<p>If you just want to build your own device, jump straight to the <a href="#building-the-device">Building the device</a>.</p>
+</blockquote>
+<h2 id="connecting-the-rf-module">Connecting the RF module</h2>
+<p>At the moment of working on the project <a href="https://tkkrlab.nl/wiki/XBOX_360_RF_Module" target="_blank">thorough reverse engineering has already been done and documented</a>. The authors figured out that the RF module communicates with Xbox 360 itself via 2 interfaces:</p>
+<ul>
+<li>A proprietary I2C-like protocol, for controlling LEDs and syncing with controllers;</li>
+<li>USB, for communicating with controllers.</li>
+</ul>
+<p>The USB connection is quite straightforward - you need to connect the ground and data lines and supply 3.3 volts for the power. Being connected to the PC, the RF module works exactly like the official wireless receiver, the only difference is the PID of the device, but after manually installing the official driver everything works as it should.</p>
+<p>Connecting a control bus is more complicated, but there are a bunch of different options:</p>
+<ul>
+<li>Leave it unconnected. I haven&rsquo;t tried that, but I&rsquo;ve read that the RF module will work fine this way with the controllers that have been previously synced with it. I also read that it&rsquo;s possible to sync a controller by connecting it via Play and Charge Kit to the same computer, but I haven&rsquo;t verified that too.</li>
+<li><a href="http://web.archive.org/web/20130921051232/http://www.astrorats.org/blog/2013/07/29/xbox-360-rf-module-and-the-raspberry-pi" target="_blank">Using a Raspberry Pi</a>. It can be quite handy if you plan to permanently use the RF receiver with Raspberry. It&rsquo;s even possible to display things using the module&rsquo;s LED ring, which can be a nice feature.</li>
+<li><a href="https://www.se7ensins.com/forums/threads/how-to-make-a-homemade-xbox-360-controller-wireless-receiver-for-pc.668839/" target="_blank">Using an FT232RL and a program for Windows</a>. I&rsquo;ve checked this one, but it didn&rsquo;t work for me. I tried to attach Saleae logic analyzer to data pins and it seems that my FT232RL&rsquo;s IO wasn&rsquo;t fast enough, seems like I&rsquo;ve got a counterfeit chip. Also, that&rsquo;s way too cumbersome for everyday use.</li>
+<li><a href="https://www.instructables.com/Diy-Xbox-wireless-controller-adapter-for-Pc/" target="_blank">Using an Arduino</a> or a bare microcontroller (also called as MCU) <a href="http://web.archive.org/web/20130820005326/http://www.astrorats.org/blog/2013/08/03/control-your-xbox-360-rf-module-with-an-attiny45/" target="_blank">(for example, ATTiny45)</a>. As for me, this is the best option since you&rsquo;re getting a self-sufficient device.</li>
+</ul>
+<h2 id="bringing-avr-to-the-table">Bringing AVR to the table</h2>
+<p>I decided to use a microcontroller, and I wanted something that wouldn&rsquo;t be overkill for this task. Fortunately, I had a few ATTiny13 laying around, which is more than enough for the given task. Also, I had a DIY development board based on ATMega16A, which was quite handy for working on the project.</p>
+<p>To be sure that I implemented the communication protocol correctly and that my module wasn&rsquo;t dead, I wrote the code that received a command via UART and sent it to the RF module. And it worked! Here&rsquo;s a quick demo:</p>
+
+<div class="youtube-video">
+  <iframe src="https://www.youtube.com/embed/K3Su9i-esuY" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<p>While testing different commands, I decided that the final implementation should allow to sync a new controller and to disable all the connected controllers. For doing so, I connected the power button from the RF module to the microcontroller too and implemented the following logic:</p>
+<ul>
+<li>After powering up, the MCU waits for 3.5s to allow the module to boot up properly and sends the &ldquo;LED_INIT&rdquo; command to initialize the LED ring and turn on the green LED in the center;</li>
+<li>After that, the MCU waits for the button press. On short press, it sends the &ldquo;SYNC&rdquo; command to sync with controllers, on the long press - sends the &ldquo;CTRLR_OFF&rdquo; command to power off all connected controllers and right after that send a bunch of commands to shortly turn on the led ring for the clarity.</li>
+</ul>
+<p>Initially, I implemented the new logic for ATMega16, and when everything was working as intended, I ported it to ATTiny13, which was a matter of just changing a header file and GPIO ports mapping. When the firmware was ready, it was time to build the final device.</p>
+<h2 id="building-the-device">Building the device</h2>
+<p>Here&rsquo;s the list of what you&rsquo;ll need to build the standalone receiver:</p>
+<ul>
+<li>An RF module itself. You need the one from the first generation of Xbox 360 (so-called Fat model). Also, pay attention to the revision of the module - people <a href="https://www.se7ensins.com/forums/threads/how-to-make-a-homemade-xbox-360-controller-wireless-receiver-for-pc.668839/" target="_blank">discovered</a> that Rev. A modules from Xenon consoles have problems with Windows 8 and have worse connectivity range, while Rev. B and the rest don&rsquo;t have those issues. I&rsquo;ve got a Rev. F module and had zero problems using it with Windows 7 and a wide range of macOS versions. RF modules from Slim and E models aren&rsquo;t suitable - although people figured out <a href="https://gr33nonline.wordpress.com/2015/09/19/make-an-xbox-receiver/" target="_blank">how to connect the USB</a>, the control bus seems to be different;</li>
+<li>AVR microcontroller. The firmware is simple and can be compiled with GCC AVR for any AVR chip with some minor changes. Both source code and the compiled binary for the ATTiny13 are stored in the <a href="https://github.com/agarmash/Xreceiver" target="_blank">project repo</a>;</li>
+<li>A way to provide 3.3v power to the module - I used an 1117-33 LDO voltage regulator with filtering capacitors, but any voltage converter can be applied here;</li>
+<li>3 pullup resistors, their optimal value is 10k ohm, but it will work with slightly different values too;</li>
+<li>A programmer for AVR, a USB connector to your taste, some hooking wire, soldering supplies - the standard stuff.</li>
+</ul>
+<p>If you haven&rsquo;t worked with AVR or with microcontrollers in general, don&rsquo;t forget that you have to flash the firmware to the MCU. There are plenty of ways to do so, I used FT232RL from the hardware and <code>avrdude</code> from the software side.</p>
+<p>Here&rsquo;s the connection diagram. The RF module&rsquo;s connector is depicted as if you were looking on the front side of it:</p>
+<p><img class="img-zoomable" src="/xbox-360-controller-receiver/schematic.png" alt="Schematic" />
+</p>
+<p>I decided not to bother with making the PCB and connected everything with hooking wires, covering all the dangling components with a heat-shrinking tube. After checking that everything works, I&rsquo;ve zip-tied the receiver to the bunch of cables on the back of my PC and used it this way until moving to another city. I still have the device, and this is how it looks nowadays:</p>
+<p><img class="img-zoomable" src="/xbox-360-controller-receiver/receiver.jpg" alt="Receiver" />
+</p>
+<p>That&rsquo;s how my desire to play some games motivated me to build something new!</p>
+<h2 id="links">Links</h2>
+<ul>
+<li><a href="https://github.com/agarmash/Xreceiver" target="_blank">Project&rsquo;s repo on GitHub</a></li>
+</ul>
+    </div>
+</article>
+
+
+
+
+            </div>
+            <aside class="col-12 col-md-3 float-left sidebar">
+    
+    <div class="sidebar-item sidebar-pages">
+        <h3>Pages</h3>
+        <ul>
+            
+            <li>
+                <a href="/">Home</a>
+            </li>
+            
+            <li>
+                <a href="/about/">About me</a>
+            </li>
+            
+            <li>
+                <a href="/index.xml">RSS</a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-tags">
+        <h3>Tags</h3>
+        <div>
+            
+            <span>
+                <a href="/tags/avr/">avr</a>
+            </span>
+            
+            <span>
+                <a href="/tags/c/">c</a>
+            </span>
+            
+            <span>
+                <a href="/tags/ipod/">ipod</a>
+            </span>
+            
+            <span>
+                <a href="/tags/rockbox/">rockbox</a>
+            </span>
+            
+            <span>
+                <a href="/tags/ssd/">ssd</a>
+            </span>
+            
+            <span>
+                <a href="/tags/swift/">swift</a>
+            </span>
+            
+            <span>
+                <a href="/tags/xbox/">xbox</a>
+            </span>
+            
+        </div>
+    </div>
+    
+    <div class="sidebar-item sidebar-links">
+        <h3>Links</h3>
+        <ul>
+            
+            <li>
+                <a href="https://github.com/agarmash" target="_blank"><span>GitHub</span></a>
+            </li>
+            
+            <li>
+                <a href="https://www.linkedin.com/in/artem-garmash/" target="_blank"><span>LinkedIn</span></a>
+            </li>
+            
+            <li>
+                <a href="https://twitter.com/agarmash_" target="_blank"><span>Twitter</span></a>
+            </li>
+            
+            <li>
+                <a href="https://stackoverflow.com/users/7696358/artem-garmash" target="_blank"><span>Stack Overflow</span></a>
+            </li>
+            
+            <li>
+                <a href="https://www.strava.com/athletes/47538392" target="_blank"><span>Strava</span></a>
+            </li>
+            
+            <li>
+                <a href="https://www.last.fm/user/arch_saint" target="_blank"><span>Last.fm</span></a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    
+    
+    <div class="sidebar-item sidebar-toc">
+        <h3>TOC</h3>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#connecting-the-rf-module">Connecting the RF module</a></li>
+    <li><a href="#bringing-avr-to-the-table">Bringing AVR to the table</a></li>
+    <li><a href="#building-the-device">Building the device</a></li>
+    <li><a href="#links">Links</a></li>
+  </ul>
+</nav>
+    </div>
+    
+    
+</aside>
+        </div>
+        <div class="btn">
+    <div class="btn-toggle-mode">
+        <i class="iconfont icon-contrast-sharp"></i>
+    </div>
+    <div class="btn-scroll-top">
+        <i class="iconfont icon-chevron-up-circle-sharp"></i>
+    </div>
+</div>
+    </main>
+
+    <footer>
+    <div class="container-lg clearfix">
+        <div class="col-12 footer">
+            <span>&copy; 2021 <a href="https://agarmash.com">Artem Garmash</a> |
+                Powered by <a href="https://gohugo.io/"
+                target="_blank">Hugo</a> & modified <a href="https://github.com/amzrk2/hugo-theme-fuji/"
+                   target="_blank">Fuji-v2</a> </span>
+        </div>
+    </div>
+</footer>
+    
+<script defer src="https://cdn.jsdelivr.net/combine/npm/medium-zoom@1.0.6,npm/lazysizes@5.2.2"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.21.0/components/prism-core.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.21.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+
+
+<script defer src="/assets/js/fuji.min.js"></script>
+
+
+</body>
+
+</html>

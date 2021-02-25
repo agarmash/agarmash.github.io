@@ -6,10 +6,20 @@
     <description>Recent content on Artem Garmash</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 15 Oct 2020 09:08:19 +0300</lastBuildDate>
-    
-	<atom:link href="https://agarmash.com/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Thu, 25 Feb 2021 09:08:19 +0300</lastBuildDate><atom:link href="https://agarmash.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Building a Wireless Receiver for Xbox 360 Controllers From a Broken Xbox 360 Console</title>
+      <link>https://agarmash.com/posts/xbox-360-controller-receiver/</link>
+      <pubDate>Thu, 25 Feb 2021 09:08:19 +0300</pubDate>
+      
+      <guid>https://agarmash.com/posts/xbox-360-controller-receiver/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ve accomplished this little project back in 2016 when I had two Xbox 360 wireless controllers and a huge desire to use them with a PC. To do so, you have to have a wireless receiver, and there were 2 mainstream options on the market:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;a genuine one - the best option, but costs around $60;&lt;/li&gt;
+&lt;li&gt;an unofficial replica - can be found for $10-15, but reliability and driver support were quite questionable.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;At that moment, I was short of money to get the first one and didn&amp;rsquo;t want to try luck with the second. Fortunately, if you dive a bit deeper into the topic and doesn&amp;rsquo;t afraid to do some soldering, there&amp;rsquo;s a third option - using an RF module from a broken Xbox 360 (later in the text I&amp;rsquo;ll refer to it just as &amp;ldquo;RF module&amp;rdquo;).&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>A Journey of Putting an SSD Into an iPod Classic With Rockbox</title>
