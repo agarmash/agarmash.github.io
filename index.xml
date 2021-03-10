@@ -6,7 +6,16 @@
     <description>Recent content on Artem Garmash</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 25 Feb 2021 09:08:19 +0300</lastBuildDate><atom:link href="https://agarmash.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 10 Mar 2021 13:39:08 +0300</lastBuildDate><atom:link href="https://agarmash.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Using UISlider or UIProgressView to Display and Control the Playback Progress of AVAudioPlayer</title>
+      <link>https://agarmash.com/posts/avaudioplayer-playback-progress/</link>
+      <pubDate>Wed, 10 Mar 2021 13:39:08 +0300</pubDate>
+      
+      <guid>https://agarmash.com/posts/avaudioplayer-playback-progress/</guid>
+      <description>&lt;p&gt;While implementing audio playback with &lt;code&gt;AVAudioPlayer&lt;/code&gt;, you may need to display the playback progress with &lt;code&gt;UIProgressView&lt;/code&gt;, or even to synchronize the state of the player with &lt;code&gt;UISlider&lt;/code&gt;. &lt;code&gt;AVAudioPlayer&lt;/code&gt; doesn&amp;rsquo;t have any functionality to get periodically notified about the current playback position. However, it has 2 aptly named properties that represent the time of the current playback position and the duration of the audio file: &lt;code&gt;currentTime&lt;/code&gt; and &lt;code&gt;duration&lt;/code&gt; respectively.&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Building a Wireless Receiver for Xbox 360 Controllers From a Broken Xbox 360 Console</title>
       <link>https://agarmash.com/posts/xbox-360-controller-receiver/</link>
