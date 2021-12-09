@@ -1,89 +1,61 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
     <loc>https://agarmash.com/</loc>
-    <lastmod>2021-03-10T13:39:08+03:00</lastmod>
-  </url>
-  
-  <url>
+    <lastmod>2021-12-09T20:20:19+01:00</lastmod>
+  </url><url>
+    <loc>https://agarmash.com/posts/xbox-black-reverse-engineering/</loc>
+    <lastmod>2021-12-09T20:20:19+01:00</lastmod>
+  </url><url>
+    <loc>https://agarmash.com/posts/</loc>
+    <lastmod>2021-12-09T20:20:19+01:00</lastmod>
+  </url><url>
+    <loc>https://agarmash.com/tags/reverse-engineering/</loc>
+    <lastmod>2021-12-09T20:20:19+01:00</lastmod>
+  </url><url>
+    <loc>https://agarmash.com/tags/xbox/</loc>
+    <lastmod>2021-12-09T20:20:19+01:00</lastmod>
+  </url><url>
     <loc>https://agarmash.com/tags/avaudioplayer/</loc>
     <lastmod>2021-03-10T13:39:08+03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://agarmash.com/posts/</loc>
-    <lastmod>2021-03-10T13:39:08+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://agarmash.com/tags/swift/</loc>
     <lastmod>2021-03-10T13:39:08+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://agarmash.com/tags/uiprogressview/</loc>
     <lastmod>2021-03-10T13:39:08+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://agarmash.com/tags/uislider/</loc>
     <lastmod>2021-03-10T13:39:08+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://agarmash.com/posts/avaudioplayer-playback-progress/</loc>
     <lastmod>2021-03-10T13:39:08+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://agarmash.com/tags/avr/</loc>
     <lastmod>2021-02-25T09:08:19+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://agarmash.com/posts/xbox-360-controller-receiver/</loc>
     <lastmod>2021-02-25T09:08:19+03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://agarmash.com/tags/xbox/</loc>
-    <lastmod>2021-02-25T09:08:19+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://agarmash.com/posts/ipod-classic-ssd/</loc>
     <lastmod>2020-10-15T09:08:19+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://agarmash.com/tags/ipod/</loc>
     <lastmod>2020-10-15T09:08:19+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://agarmash.com/tags/rockbox/</loc>
     <lastmod>2020-10-15T09:08:19+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://agarmash.com/tags/ssd/</loc>
     <lastmod>2020-10-15T09:08:19+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://agarmash.com/tags/c/</loc>
     <lastmod>2020-09-30T13:39:08+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://agarmash.com/posts/c-library-in-swift/</loc>
     <lastmod>2020-09-30T13:39:08+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://agarmash.com/about/</loc>
   </url>
-  
 </urlset>
