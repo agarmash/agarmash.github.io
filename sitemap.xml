@@ -3,12 +3,21 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://agarmash.com/</loc>
-    <lastmod>2021-12-09T20:20:19+01:00</lastmod>
+    <lastmod>2021-12-26T13:39:08+01:00</lastmod>
   </url><url>
-    <loc>https://agarmash.com/posts/xbox-black-reverse-engineering/</loc>
-    <lastmod>2021-12-09T20:20:19+01:00</lastmod>
+    <loc>https://agarmash.com/tags/avfoundation/</loc>
+    <lastmod>2021-12-26T13:39:08+01:00</lastmod>
   </url><url>
     <loc>https://agarmash.com/posts/</loc>
+    <lastmod>2021-12-26T13:39:08+01:00</lastmod>
+  </url><url>
+    <loc>https://agarmash.com/tags/swift/</loc>
+    <lastmod>2021-12-26T13:39:08+01:00</lastmod>
+  </url><url>
+    <loc>https://agarmash.com/posts/avfoundation-audio-trimming/</loc>
+    <lastmod>2021-12-26T13:39:08+01:00</lastmod>
+  </url><url>
+    <loc>https://agarmash.com/posts/xbox-black-reverse-engineering/</loc>
     <lastmod>2021-12-09T20:20:19+01:00</lastmod>
   </url><url>
     <loc>https://agarmash.com/tags/reverse-engineering/</loc>
@@ -18,9 +27,6 @@
     <lastmod>2021-12-09T20:20:19+01:00</lastmod>
   </url><url>
     <loc>https://agarmash.com/tags/avaudioplayer/</loc>
-    <lastmod>2021-03-10T13:39:08+03:00</lastmod>
-  </url><url>
-    <loc>https://agarmash.com/tags/swift/</loc>
     <lastmod>2021-03-10T13:39:08+03:00</lastmod>
   </url><url>
     <loc>https://agarmash.com/tags/uiprogressview/</loc>

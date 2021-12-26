@@ -6,7 +6,26 @@
     <description>Recent content in Swift on Artem Garmash</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 10 Mar 2021 13:39:08 +0300</lastBuildDate><atom:link href="https://agarmash.com/tags/swift/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 26 Dec 2021 13:39:08 +0100</lastBuildDate><atom:link href="https://agarmash.com/tags/swift/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Trimming Audio Files and Adding Silence with AVFoundation in Swift</title>
+      <link>https://agarmash.com/posts/avfoundation-audio-trimming/</link>
+      <pubDate>Sun, 26 Dec 2021 13:39:08 +0100</pubDate>
+      
+      <guid>https://agarmash.com/posts/avfoundation-audio-trimming/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;Originally posted in &lt;a href=&#34;https://akvelon.com/how-to-trim-audio-files-and-add-silence-with-avfoundation-in-swift&#34; target=&#34;_blank&#34;&gt;Akvelon Blog&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;While working on one of the apps, we faced the need to trim the recorded audio files. We were working with 32-bit float WAV files, and we had the following requirements:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;the output file should have the exact same format as the input file;&lt;/li&gt;
+&lt;li&gt;no processing should be applied to the audio data, audio samples should be copied as-is;&lt;/li&gt;
+&lt;li&gt;there should be an ability to add silence to the output file.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;My first guess was to use &lt;code&gt;AVAssetExportSession&lt;/code&gt;, but it has limited options for exporting the audio, and it’s not possible to be sure what it does with the audio under the hood. A no-go.&lt;/p&gt;
+&lt;p&gt;Secondly, I took a look at the requirements again. &amp;ldquo;Audio samples should be copied as-is&amp;rdquo;. That was exactly what we needed - to open the input file for reading, the output one for writing, calculate the range of audio samples to copy, and perform the actual copying. Fortunately, it was completely possible with &lt;code&gt;AVAudioFile&lt;/code&gt; - it can be read into &lt;code&gt;AVAudioPCMBuffer&lt;/code&gt; and written from one&amp;rsquo;s contents.&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Using UISlider or UIProgressView to Display and Control the Playback Progress of AVAudioPlayer</title>
       <link>https://agarmash.com/posts/avaudioplayer-playback-progress/</link>

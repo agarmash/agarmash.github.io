@@ -90,6 +90,30 @@
 
 <div class="post">
     <h2 class="post-item post-title">
+        <a href="https://agarmash.com/posts/avfoundation-audio-trimming/">Trimming Audio Files and Adding Silence with AVFoundation in Swift</a>
+    </h2>
+    <div class="post-item post-meta">
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2021-12-26</span><span><i class="iconfont icon-time-sharp"></i>&nbsp;9 minutes</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/swift">Swift</a>&nbsp;<a href="/tags/avfoundation">AVFoundation</a>&nbsp;</span>
+
+    </div>
+    <div class="post-item post-summary markdown-body">
+        <blockquote>
+<p>Originally posted in <a href="https://akvelon.com/how-to-trim-audio-files-and-add-silence-with-avfoundation-in-swift" target="_blank">Akvelon Blog</a></p>
+</blockquote>
+<p>While working on one of the apps, we faced the need to trim the recorded audio files. We were working with 32-bit float WAV files, and we had the following requirements:</p>
+<ul>
+<li>the output file should have the exact same format as the input file;</li>
+<li>no processing should be applied to the audio data, audio samples should be copied as-is;</li>
+<li>there should be an ability to add silence to the output file.</li>
+</ul>
+<p>My first guess was to use <code>AVAssetExportSession</code>, but it has limited options for exporting the audio, and it’s not possible to be sure what it does with the audio under the hood. A no-go.</p>
+<p>Secondly, I took a look at the requirements again. &ldquo;Audio samples should be copied as-is&rdquo;. That was exactly what we needed - to open the input file for reading, the output one for writing, calculate the range of audio samples to copy, and perform the actual copying. Fortunately, it was completely possible with <code>AVAudioFile</code> - it can be read into <code>AVAudioPCMBuffer</code> and written from one&rsquo;s contents.</p>
+        <a href="https://agarmash.com/posts/avfoundation-audio-trimming/">Read More</a>
+    </div>
+</div>
+
+<div class="post">
+    <h2 class="post-item post-title">
         <a href="https://agarmash.com/posts/xbox-black-reverse-engineering/">Patching Xbox Game Black to Disable Savefile Signature Checking</a>
     </h2>
     <div class="post-item post-meta">
@@ -209,6 +233,10 @@
             
             <span>
                 <a href="/tags/avaudioplayer/">AVAudioPlayer</a>
+            </span>
+            
+            <span>
+                <a href="/tags/avfoundation/">AVFoundation</a>
             </span>
             
             <span>
