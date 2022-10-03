@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
-<meta name="generator" content="Hugo 0.99.1" />
+<meta name="generator" content="Hugo 0.101.0" />
 
 
 
@@ -176,6 +176,36 @@ At that moment, I was short of money to get the first one and didn&rsquo;t want 
 
 
 
+<div class="post-comment" data-comment="utterances">
+    <span class="post-comment-notloaded">
+        <i class="iconfont icon-chatbox-ellipses-sharp"></i>&nbsp;Load comments
+    </span>
+    <script>
+        function loadComment() {
+            var commentArea = document.querySelector('.post-comment');
+            var utterancesTheme = document.body.getAttribute('data-theme');
+            if (utterancesTheme === 'auto') {
+                utterancesTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'photon-dark' :
+                    'github-light';
+            } else {
+                utterancesTheme = utterancesTheme === 'dark' ? 'photon-dark' : 'github-light';
+            }
+            var s = document.createElement('script');
+            s.src = 'https://utteranc.es/client.js';
+            s.setAttribute('repo', 'agarmash\/agarmash.github.io');
+            s.setAttribute('issue-term', 'pathname');
+            s.setAttribute('label', 'Comments');
+            s.setAttribute('theme', utterancesTheme);
+            s.setAttribute('crossorigin', 'anonymous');
+            s.setAttribute('async', '');
+            document.querySelector('.post-comment').appendChild(s);
+            document.querySelector('span.post-comment-notloaded').setAttribute('style', 'display: none;');
+        }
+
+        loadComment()
+    </script>
+</div>
+
 
             </div>
             <aside class="col-12 col-md-3 float-left sidebar">
@@ -221,6 +251,10 @@ At that moment, I was short of money to get the first one and didn&rsquo;t want 
             
             <span>
                 <a href="/tags/ctf/">CTF</a>
+            </span>
+            
+            <span>
+                <a href="/tags/exploitation/">Exploitation</a>
             </span>
             
             <span>
@@ -309,6 +343,10 @@ At that moment, I was short of money to get the first one and didn&rsquo;t want 
     <li><a href="#links">Links</a></li>
   </ul>
 </nav>
+
+        <div style="margin-top: 1rem;">
+            <a href='https://ko-fi.com/agarmash' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi2.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+        </div>
     </div>
     
     

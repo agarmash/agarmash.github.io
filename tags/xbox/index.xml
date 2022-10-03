@@ -6,7 +6,22 @@
     <description>Recent content in Xbox on Artem Garmash</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 09 Dec 2021 20:20:19 +0100</lastBuildDate><atom:link href="https://agarmash.com/tags/xbox/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 03 Oct 2022 20:20:19 +0100</lastBuildDate><atom:link href="https://agarmash.com/tags/xbox/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Exploiting Xbox Game Frogger Beyond to Execute Arbitrary Unsigned Code</title>
+      <link>https://agarmash.com/posts/xbox-frogger-beyond-exploit/</link>
+      <pubDate>Mon, 03 Oct 2022 20:20:19 +0100</pubDate>
+      
+      <guid>https://agarmash.com/posts/xbox-frogger-beyond-exploit/</guid>
+      <description>&lt;p&gt;The Original Xbox was a &lt;a href=&#34;https://xboxdevwiki.net/17_Mistakes_Microsoft_Made_in_the_Xbox_Security_System&#34; target=&#34;_blank&#34;&gt;total disaster from a security point of view&lt;/a&gt;. It has been fully cracked relatively quickly, so it became possible to modify your system to disable the security checks and run the unsigned code: Linux, homebrew, game backups - you name it.&lt;/p&gt;
+&lt;p&gt;For making that possible for the end user, 2 modding methods have been created:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Hardmod - requires soldering a modchip to the mainboard that contains the modified BIOS with security checks disabled and overrides the built-in flash memory. This is the most reliable and fool-proof method, but it requires modifying the hardware;&lt;/li&gt;
+&lt;li&gt;Softmod - requires triggering a chain of exploits in software. Usually, a commercially available videogame with exploitable vulnerabilities in the savefile loading code is used as an entry point. Less reliable since the console can be bricked by doing something wrong (however, hardmod would fix it in any case), but doesn&amp;rsquo;t require any soldering iron involvement.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Even today, the softmod is a preferred method for a lot of people, so we&amp;rsquo;re going to take a look at how some parts of the softmod work, and create a brand new savefile exploit.&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Patching Xbox Game Black to Disable Savefile Signature Checking</title>
       <link>https://agarmash.com/posts/xbox-black-reverse-engineering/</link>

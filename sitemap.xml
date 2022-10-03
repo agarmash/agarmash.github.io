@@ -3,7 +3,19 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://agarmash.com/</loc>
-    <lastmod>2022-06-13T13:00:00+01:00</lastmod>
+    <lastmod>2022-10-03T20:20:19+01:00</lastmod>
+  </url><url>
+    <loc>https://agarmash.com/tags/exploitation/</loc>
+    <lastmod>2022-10-03T20:20:19+01:00</lastmod>
+  </url><url>
+    <loc>https://agarmash.com/posts/xbox-frogger-beyond-exploit/</loc>
+    <lastmod>2022-10-03T20:20:19+01:00</lastmod>
+  </url><url>
+    <loc>https://agarmash.com/posts/</loc>
+    <lastmod>2022-10-03T20:20:19+01:00</lastmod>
+  </url><url>
+    <loc>https://agarmash.com/tags/xbox/</loc>
+    <lastmod>2022-10-03T20:20:19+01:00</lastmod>
   </url><url>
     <loc>https://agarmash.com/tags/ctf/</loc>
     <lastmod>2022-06-13T13:00:00+01:00</lastmod>
@@ -12,9 +24,6 @@
     <lastmod>2022-06-13T13:00:00+01:00</lastmod>
   </url><url>
     <loc>https://agarmash.com/tags/hackthebox/</loc>
-    <lastmod>2022-06-13T13:00:00+01:00</lastmod>
-  </url><url>
-    <loc>https://agarmash.com/posts/</loc>
     <lastmod>2022-06-13T13:00:00+01:00</lastmod>
   </url><url>
     <loc>https://agarmash.com/tags/writeup/</loc>
@@ -33,9 +42,6 @@
     <lastmod>2021-12-09T20:20:19+01:00</lastmod>
   </url><url>
     <loc>https://agarmash.com/tags/reverse-engineering/</loc>
-    <lastmod>2021-12-09T20:20:19+01:00</lastmod>
-  </url><url>
-    <loc>https://agarmash.com/tags/xbox/</loc>
     <lastmod>2021-12-09T20:20:19+01:00</lastmod>
   </url><url>
     <loc>https://agarmash.com/tags/avaudioplayer/</loc>
