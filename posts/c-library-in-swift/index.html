@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
-<meta name="generator" content="Hugo 0.101.0" />
+<meta name="generator" content="Hugo 0.169.0">
 
 
 
@@ -22,31 +22,30 @@
 
 <meta name="keywords" content="C, Swift" />
 
-<meta property="og:title" content="How to Integrate a C Library into an iOS App Written in Swift" />
-<meta property="og:description" content="
-Initially, I wrote this article for Distillery Tech Blog back in 2018. I decided to copy it here for the further preservation.
-
+<meta property="og:url" content="https://agarmash.com/posts/c-library-in-swift/">
+	<meta property="og:site_name" content="Artem Garmash">
+	<meta property="og:title" content="How to Integrate a C Library into an iOS App Written in Swift">
+	<meta property="og:description" content="Initially, I wrote this article for Distillery Tech Blog back in 2018. I decided to copy it here for the further preservation.
 Nowadays, everyone values privacy and security. That’s why it wasn’t surprising when, recently, we needed to use an encryption library on one of the projects.
 For the project in question, the decision was made to use libsignal. Originally developed for Signal Private Messenger, libsignal has a good reputation among security specialists.
-Using libsignal
-At the end of July 2018, there were implementations of libsignal in C, Java, and JavaScript. There was also an implementation in Objective-C called SignalProtocolKit, but at that time it had already been deprecated.
-Our goal was to use the library in an iOS app written in Swift. To keep everything up to date, we had to use the one written in C, for which the source code is stored here. Lucky for us, Swift can interact with C code very smoothly, at minimum because some of Apple’s low-level libraries are written in C. The tricky part was to add the library to the project correctly." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://agarmash.com/posts/c-library-in-swift/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2020-09-30T13:39:08+03:00" />
-<meta property="article:modified_time" content="2020-09-30T13:39:08+03:00" />
+Using libsignal At the end of July 2018, there were implementations of libsignal in C, Java, and JavaScript. There was also an implementation in Objective-C called SignalProtocolKit, but at that time it had already been deprecated.
+Our goal was to use the library in an iOS app written in Swift. To keep everything up to date, we had to use the one written in C, for which the source code is stored here. Lucky for us, Swift can interact with C code very smoothly, at minimum because some of Apple’s low-level libraries are written in C. The tricky part was to add the library to the project correctly.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2020-09-30T13:39:08+03:00">
+		<meta property="article:modified_time" content="2020-09-30T13:39:08+03:00">
+		<meta property="article:tag" content="C">
+		<meta property="article:tag" content="Swift">
 
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="How to Integrate a C Library into an iOS App Written in Swift"/>
-<meta name="twitter:description" content="
-Initially, I wrote this article for Distillery Tech Blog back in 2018. I decided to copy it here for the further preservation.
-
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="How to Integrate a C Library into an iOS App Written in Swift">
+	<meta name="twitter:description" content="Initially, I wrote this article for Distillery Tech Blog back in 2018. I decided to copy it here for the further preservation.
 Nowadays, everyone values privacy and security. That’s why it wasn’t surprising when, recently, we needed to use an encryption library on one of the projects.
 For the project in question, the decision was made to use libsignal. Originally developed for Signal Private Messenger, libsignal has a good reputation among security specialists.
-Using libsignal
-At the end of July 2018, there were implementations of libsignal in C, Java, and JavaScript. There was also an implementation in Objective-C called SignalProtocolKit, but at that time it had already been deprecated.
-Our goal was to use the library in an iOS app written in Swift. To keep everything up to date, we had to use the one written in C, for which the source code is stored here. Lucky for us, Swift can interact with C code very smoothly, at minimum because some of Apple’s low-level libraries are written in C. The tricky part was to add the library to the project correctly."/>
+Using libsignal At the end of July 2018, there were implementations of libsignal in C, Java, and JavaScript. There was also an implementation in Objective-C called SignalProtocolKit, but at that time it had already been deprecated.
+Our goal was to use the library in an iOS app written in Swift. To keep everything up to date, we had to use the one written in C, for which the source code is stored here. Lucky for us, Swift can interact with C code very smoothly, at minimum because some of Apple’s low-level libraries are written in C. The tricky part was to add the library to the project correctly.">
 
 
 
@@ -90,9 +89,7 @@ Our goal was to use the library in an iOS app written in Swift. To keep everythi
     <header>
     <div class="container-lg clearfix">
         <div class="col-12 header">
-            <a class="title-main" href="https://agarmash.com">Artem Garmash</a>
-            
-            <span class="title-sub">Software developer, hardware enthusiast, mountain bike rider, musichead</span>
+            <a class="title-main" href="https://agarmash.com/">Artem Garmash</a>
             
         </div>
     </div>
@@ -110,7 +107,7 @@ Our goal was to use the library in an iOS app written in Swift. To keep everythi
     </h2>
     
     <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-09-30</span><span><i class="iconfont icon-time-sharp"></i>&nbsp;5 minutes</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/c">C</a>&nbsp;<a href="/tags/swift">Swift</a>&nbsp;</span>
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-09-30</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;908 words</span><span><i class="iconfont icon-time-sharp"></i>&nbsp;5 minutes</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/c">C</a>&nbsp;<a href="/tags/swift">Swift</a>&nbsp;</span>
 
     </div>
     
@@ -270,7 +267,7 @@ base.h
             </span>
             
             <span>
-                <a href="/tags/ipod/">iPod</a>
+                <a href="/tags/ipod/">IPod</a>
             </span>
             
             <span>
@@ -324,18 +321,6 @@ base.h
                 <a href="https://twitter.com/agarmash_" target="_blank"><span>Twitter</span></a>
             </li>
             
-            <li>
-                <a href="https://stackoverflow.com/users/7696358/artem-garmash" target="_blank"><span>Stack Overflow</span></a>
-            </li>
-            
-            <li>
-                <a href="https://www.strava.com/athletes/47538392" target="_blank"><span>Strava</span></a>
-            </li>
-            
-            <li>
-                <a href="https://www.last.fm/user/arch_saint" target="_blank"><span>Last.fm</span></a>
-            </li>
-            
         </ul>
     </div>
     
@@ -379,7 +364,7 @@ base.h
     <footer>
     <div class="container-lg clearfix">
         <div class="col-12 footer">
-            <span>&copy; 2022 <a href="https://agarmash.com">Artem Garmash</a> |
+            <span>&copy; 2026 <a href="https://agarmash.com/">Artem Garmash</a> |
                 Powered by <a href="https://gohugo.io/"
                 target="_blank">Hugo</a> & modified <a href="https://github.com/amzrk2/hugo-theme-fuji/"
                    target="_blank">Fuji-v2</a> </span>

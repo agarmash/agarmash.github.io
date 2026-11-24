@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
-<meta name="generator" content="Hugo 0.101.0" />
+<meta name="generator" content="Hugo 0.169.0">
 
 
 
@@ -22,37 +22,28 @@
 
 <meta name="keywords" content="Swift, AVFoundation" />
 
-<meta property="og:title" content="Trimming Audio Files and Adding Silence with AVFoundation in Swift" />
-<meta property="og:description" content="
-Originally posted in Akvelon Blog
-
+<meta property="og:url" content="https://agarmash.com/posts/avfoundation-audio-trimming/">
+	<meta property="og:site_name" content="Artem Garmash">
+	<meta property="og:title" content="Trimming Audio Files and Adding Silence with AVFoundation in Swift">
+	<meta property="og:description" content="Originally posted in Akvelon Blog
 While working on one of the apps, we faced the need to trim the recorded audio files. We were working with 32-bit float WAV files, and we had the following requirements:
-
-the output file should have the exact same format as the input file;
-no processing should be applied to the audio data, audio samples should be copied as-is;
-there should be an ability to add silence to the output file.
-
-My first guess was to use AVAssetExportSession, but it has limited options for exporting the audio, and it’s not possible to be sure what it does with the audio under the hood. A no-go.
-Secondly, I took a look at the requirements again. &ldquo;Audio samples should be copied as-is&rdquo;. That was exactly what we needed - to open the input file for reading, the output one for writing, calculate the range of audio samples to copy, and perform the actual copying. Fortunately, it was completely possible with AVAudioFile - it can be read into AVAudioPCMBuffer and written from one&rsquo;s contents." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://agarmash.com/posts/avfoundation-audio-trimming/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-12-26T13:39:08+01:00" />
-<meta property="article:modified_time" content="2021-12-26T13:39:08+01:00" />
+the output file should have the exact same format as the input file; no processing should be applied to the audio data, audio samples should be copied as-is; there should be an ability to add silence to the output file. My first guess was to use AVAssetExportSession, but it has limited options for exporting the audio, and it’s not possible to be sure what it does with the audio under the hood. A no-go.
+Secondly, I took a look at the requirements again. “Audio samples should be copied as-is”. That was exactly what we needed - to open the input file for reading, the output one for writing, calculate the range of audio samples to copy, and perform the actual copying. Fortunately, it was completely possible with AVAudioFile - it can be read into AVAudioPCMBuffer and written from one’s contents.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2021-12-26T13:39:08+01:00">
+		<meta property="article:modified_time" content="2021-12-26T13:39:08+01:00">
+		<meta property="article:tag" content="Swift">
+		<meta property="article:tag" content="AVFoundation">
 
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Trimming Audio Files and Adding Silence with AVFoundation in Swift"/>
-<meta name="twitter:description" content="
-Originally posted in Akvelon Blog
-
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Trimming Audio Files and Adding Silence with AVFoundation in Swift">
+	<meta name="twitter:description" content="Originally posted in Akvelon Blog
 While working on one of the apps, we faced the need to trim the recorded audio files. We were working with 32-bit float WAV files, and we had the following requirements:
-
-the output file should have the exact same format as the input file;
-no processing should be applied to the audio data, audio samples should be copied as-is;
-there should be an ability to add silence to the output file.
-
-My first guess was to use AVAssetExportSession, but it has limited options for exporting the audio, and it’s not possible to be sure what it does with the audio under the hood. A no-go.
-Secondly, I took a look at the requirements again. &ldquo;Audio samples should be copied as-is&rdquo;. That was exactly what we needed - to open the input file for reading, the output one for writing, calculate the range of audio samples to copy, and perform the actual copying. Fortunately, it was completely possible with AVAudioFile - it can be read into AVAudioPCMBuffer and written from one&rsquo;s contents."/>
+the output file should have the exact same format as the input file; no processing should be applied to the audio data, audio samples should be copied as-is; there should be an ability to add silence to the output file. My first guess was to use AVAssetExportSession, but it has limited options for exporting the audio, and it’s not possible to be sure what it does with the audio under the hood. A no-go.
+Secondly, I took a look at the requirements again. “Audio samples should be copied as-is”. That was exactly what we needed - to open the input file for reading, the output one for writing, calculate the range of audio samples to copy, and perform the actual copying. Fortunately, it was completely possible with AVAudioFile - it can be read into AVAudioPCMBuffer and written from one’s contents.">
 
 
 
@@ -96,9 +87,7 @@ Secondly, I took a look at the requirements again. &ldquo;Audio samples should b
     <header>
     <div class="container-lg clearfix">
         <div class="col-12 header">
-            <a class="title-main" href="https://agarmash.com">Artem Garmash</a>
-            
-            <span class="title-sub">Software developer, hardware enthusiast, mountain bike rider, musichead</span>
+            <a class="title-main" href="https://agarmash.com/">Artem Garmash</a>
             
         </div>
     </div>
@@ -116,7 +105,7 @@ Secondly, I took a look at the requirements again. &ldquo;Audio samples should b
     </h2>
     
     <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2021-12-26</span><span><i class="iconfont icon-time-sharp"></i>&nbsp;9 minutes</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/swift">Swift</a>&nbsp;<a href="/tags/avfoundation">AVFoundation</a>&nbsp;</span>
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2021-12-26</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1792 words</span><span><i class="iconfont icon-time-sharp"></i>&nbsp;9 minutes</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/swift">Swift</a>&nbsp;<a href="/tags/avfoundation">AVFoundation</a>&nbsp;</span>
 
     </div>
     
@@ -374,7 +363,7 @@ for channel in 0..&lt;Int(processingFormat.channelCount) {
             </span>
             
             <span>
-                <a href="/tags/ipod/">iPod</a>
+                <a href="/tags/ipod/">IPod</a>
             </span>
             
             <span>
@@ -428,18 +417,6 @@ for channel in 0..&lt;Int(processingFormat.channelCount) {
                 <a href="https://twitter.com/agarmash_" target="_blank"><span>Twitter</span></a>
             </li>
             
-            <li>
-                <a href="https://stackoverflow.com/users/7696358/artem-garmash" target="_blank"><span>Stack Overflow</span></a>
-            </li>
-            
-            <li>
-                <a href="https://www.strava.com/athletes/47538392" target="_blank"><span>Strava</span></a>
-            </li>
-            
-            <li>
-                <a href="https://www.last.fm/user/arch_saint" target="_blank"><span>Last.fm</span></a>
-            </li>
-            
         </ul>
     </div>
     
@@ -479,7 +456,7 @@ for channel in 0..&lt;Int(processingFormat.channelCount) {
     <footer>
     <div class="container-lg clearfix">
         <div class="col-12 footer">
-            <span>&copy; 2022 <a href="https://agarmash.com">Artem Garmash</a> |
+            <span>&copy; 2026 <a href="https://agarmash.com/">Artem Garmash</a> |
                 Powered by <a href="https://gohugo.io/"
                 target="_blank">Hugo</a> & modified <a href="https://github.com/amzrk2/hugo-theme-fuji/"
                    target="_blank">Fuji-v2</a> </span>

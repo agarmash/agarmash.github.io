@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
-<meta name="generator" content="Hugo 0.101.0" />
+<meta name="generator" content="Hugo 0.169.0">
 
 
 
@@ -22,27 +22,24 @@
 
 <meta name="keywords" content="Xbox, AVR" />
 
-<meta property="og:title" content="Building a Wireless Receiver for Xbox 360 Controllers From a Broken Xbox 360 Console" />
-<meta property="og:description" content="I&rsquo;ve accomplished this little project back in 2016 when I had two Xbox 360 wireless controllers and a huge desire to use them with a PC. To do so, you have to have a wireless receiver, and there were 2 mainstream options on the market:
+<meta property="og:url" content="https://agarmash.com/posts/xbox-360-controller-receiver/">
+	<meta property="og:site_name" content="Artem Garmash">
+	<meta property="og:title" content="Building a Wireless Receiver for Xbox 360 Controllers From a Broken Xbox 360 Console">
+	<meta property="og:description" content="I’ve accomplished this little project back in 2016 when I had two Xbox 360 wireless controllers and a huge desire to use them with a PC. To do so, you have to have a wireless receiver, and there were 2 mainstream options on the market:
+a genuine one - the best option, but costs around $60; an unofficial replica - can be found for $10-15, but reliability and driver support were quite questionable. At that moment, I was short of money to get the first one and didn’t want to try luck with the second. Fortunately, if you dive a bit deeper into the topic and doesn’t afraid to do some soldering, there’s a third option - using an RF module from a broken Xbox 360 (later in the text I’ll refer to it just as “RF module”).">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2021-02-25T09:08:19+03:00">
+		<meta property="article:modified_time" content="2021-02-25T09:08:19+03:00">
+		<meta property="article:tag" content="Xbox">
+		<meta property="article:tag" content="AVR">
 
-a genuine one - the best option, but costs around $60;
-an unofficial replica - can be found for $10-15, but reliability and driver support were quite questionable.
 
-At that moment, I was short of money to get the first one and didn&rsquo;t want to try luck with the second. Fortunately, if you dive a bit deeper into the topic and doesn&rsquo;t afraid to do some soldering, there&rsquo;s a third option - using an RF module from a broken Xbox 360 (later in the text I&rsquo;ll refer to it just as &ldquo;RF module&rdquo;)." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://agarmash.com/posts/xbox-360-controller-receiver/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-02-25T09:08:19+03:00" />
-<meta property="article:modified_time" content="2021-02-25T09:08:19+03:00" />
-
-
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Building a Wireless Receiver for Xbox 360 Controllers From a Broken Xbox 360 Console"/>
-<meta name="twitter:description" content="I&rsquo;ve accomplished this little project back in 2016 when I had two Xbox 360 wireless controllers and a huge desire to use them with a PC. To do so, you have to have a wireless receiver, and there were 2 mainstream options on the market:
-
-a genuine one - the best option, but costs around $60;
-an unofficial replica - can be found for $10-15, but reliability and driver support were quite questionable.
-
-At that moment, I was short of money to get the first one and didn&rsquo;t want to try luck with the second. Fortunately, if you dive a bit deeper into the topic and doesn&rsquo;t afraid to do some soldering, there&rsquo;s a third option - using an RF module from a broken Xbox 360 (later in the text I&rsquo;ll refer to it just as &ldquo;RF module&rdquo;)."/>
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Building a Wireless Receiver for Xbox 360 Controllers From a Broken Xbox 360 Console">
+	<meta name="twitter:description" content="I’ve accomplished this little project back in 2016 when I had two Xbox 360 wireless controllers and a huge desire to use them with a PC. To do so, you have to have a wireless receiver, and there were 2 mainstream options on the market:
+a genuine one - the best option, but costs around $60; an unofficial replica - can be found for $10-15, but reliability and driver support were quite questionable. At that moment, I was short of money to get the first one and didn’t want to try luck with the second. Fortunately, if you dive a bit deeper into the topic and doesn’t afraid to do some soldering, there’s a third option - using an RF module from a broken Xbox 360 (later in the text I’ll refer to it just as “RF module”).">
 
 
 
@@ -86,9 +83,7 @@ At that moment, I was short of money to get the first one and didn&rsquo;t want 
     <header>
     <div class="container-lg clearfix">
         <div class="col-12 header">
-            <a class="title-main" href="https://agarmash.com">Artem Garmash</a>
-            
-            <span class="title-sub">Software developer, hardware enthusiast, mountain bike rider, musichead</span>
+            <a class="title-main" href="https://agarmash.com/">Artem Garmash</a>
             
         </div>
     </div>
@@ -106,7 +101,7 @@ At that moment, I was short of money to get the first one and didn&rsquo;t want 
     </h2>
     
     <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2021-02-25</span><span><i class="iconfont icon-time-sharp"></i>&nbsp;6 minutes</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/xbox">Xbox</a>&nbsp;<a href="/tags/avr">AVR</a>&nbsp;</span>
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2021-02-25</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1107 words</span><span><i class="iconfont icon-time-sharp"></i>&nbsp;6 minutes</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/xbox">Xbox</a>&nbsp;<a href="/tags/avr">AVR</a>&nbsp;</span>
 
     </div>
     
@@ -262,7 +257,7 @@ At that moment, I was short of money to get the first one and didn&rsquo;t want 
             </span>
             
             <span>
-                <a href="/tags/ipod/">iPod</a>
+                <a href="/tags/ipod/">IPod</a>
             </span>
             
             <span>
@@ -316,18 +311,6 @@ At that moment, I was short of money to get the first one and didn&rsquo;t want 
                 <a href="https://twitter.com/agarmash_" target="_blank"><span>Twitter</span></a>
             </li>
             
-            <li>
-                <a href="https://stackoverflow.com/users/7696358/artem-garmash" target="_blank"><span>Stack Overflow</span></a>
-            </li>
-            
-            <li>
-                <a href="https://www.strava.com/athletes/47538392" target="_blank"><span>Strava</span></a>
-            </li>
-            
-            <li>
-                <a href="https://www.last.fm/user/arch_saint" target="_blank"><span>Last.fm</span></a>
-            </li>
-            
         </ul>
     </div>
     
@@ -365,7 +348,7 @@ At that moment, I was short of money to get the first one and didn&rsquo;t want 
     <footer>
     <div class="container-lg clearfix">
         <div class="col-12 footer">
-            <span>&copy; 2022 <a href="https://agarmash.com">Artem Garmash</a> |
+            <span>&copy; 2026 <a href="https://agarmash.com/">Artem Garmash</a> |
                 Powered by <a href="https://gohugo.io/"
                 target="_blank">Hugo</a> & modified <a href="https://github.com/amzrk2/hugo-theme-fuji/"
                    target="_blank">Fuji-v2</a> </span>

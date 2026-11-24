@@ -1,50 +1,45 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Xbox on Artem Garmash</title>
-    <link>https://agarmash.com/tags/xbox/</link>
-    <description>Recent content in Xbox on Artem Garmash</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Mon, 03 Oct 2022 20:20:19 +0100</lastBuildDate><atom:link href="https://agarmash.com/tags/xbox/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Exploiting Xbox Game Frogger Beyond to Execute Arbitrary Unsigned Code</title>
-      <link>https://agarmash.com/posts/xbox-frogger-beyond-exploit/</link>
-      <pubDate>Mon, 03 Oct 2022 20:20:19 +0100</pubDate>
-      
-      <guid>https://agarmash.com/posts/xbox-frogger-beyond-exploit/</guid>
-      <description>&lt;p&gt;The Original Xbox was a &lt;a href=&#34;https://xboxdevwiki.net/17_Mistakes_Microsoft_Made_in_the_Xbox_Security_System&#34; target=&#34;_blank&#34;&gt;total disaster from a security point of view&lt;/a&gt;. It has been fully cracked relatively quickly, so it became possible to modify your system to disable the security checks and run the unsigned code: Linux, homebrew, game backups - you name it.&lt;/p&gt;
-&lt;p&gt;For making that possible for the end user, 2 modding methods have been created:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Hardmod - requires soldering a modchip to the mainboard that contains the modified BIOS with security checks disabled and overrides the built-in flash memory. This is the most reliable and fool-proof method, but it requires modifying the hardware;&lt;/li&gt;
-&lt;li&gt;Softmod - requires triggering a chain of exploits in software. Usually, a commercially available videogame with exploitable vulnerabilities in the savefile loading code is used as an entry point. Less reliable since the console can be bricked by doing something wrong (however, hardmod would fix it in any case), but doesn&amp;rsquo;t require any soldering iron involvement.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Even today, the softmod is a preferred method for a lot of people, so we&amp;rsquo;re going to take a look at how some parts of the softmod work, and create a brand new savefile exploit.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Patching Xbox Game Black to Disable Savefile Signature Checking</title>
-      <link>https://agarmash.com/posts/xbox-black-reverse-engineering/</link>
-      <pubDate>Thu, 09 Dec 2021 20:20:19 +0100</pubDate>
-      
-      <guid>https://agarmash.com/posts/xbox-black-reverse-engineering/</guid>
-      <description>&lt;p&gt;&lt;em&gt;A story about reverse engineering and way too smart FTP client&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;Some time ago, I decided to swap HDD in my Original Xbox. It already has been upgraded with a 40 Gb IDE drive, but I had a spare 160 Gb SATA drive laying around and wanted to have some more storage in the system. I bought a SATA to IDE converter, swapped the drives, installed the system software, and transferred all the content back. To my utmost disappointment, savefiles for some games were corrupted. One of them was &lt;strong&gt;Black&lt;/strong&gt;, where I had a decent amount of played hours. I did some basic troubleshooting but wasn&amp;rsquo;t able to find the source of the problem. At that moment it was obvious to me that the problem lay in the new hard drive.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Building a Wireless Receiver for Xbox 360 Controllers From a Broken Xbox 360 Console</title>
-      <link>https://agarmash.com/posts/xbox-360-controller-receiver/</link>
-      <pubDate>Thu, 25 Feb 2021 09:08:19 +0300</pubDate>
-      
-      <guid>https://agarmash.com/posts/xbox-360-controller-receiver/</guid>
-      <description>&lt;p&gt;I&amp;rsquo;ve accomplished this little project back in 2016 when I had two Xbox 360 wireless controllers and a huge desire to use them with a PC. To do so, you have to have a wireless receiver, and there were 2 mainstream options on the market:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;a genuine one - the best option, but costs around $60;&lt;/li&gt;
-&lt;li&gt;an unofficial replica - can be found for $10-15, but reliability and driver support were quite questionable.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;At that moment, I was short of money to get the first one and didn&amp;rsquo;t want to try luck with the second. Fortunately, if you dive a bit deeper into the topic and doesn&amp;rsquo;t afraid to do some soldering, there&amp;rsquo;s a third option - using an RF module from a broken Xbox 360 (later in the text I&amp;rsquo;ll refer to it just as &amp;ldquo;RF module&amp;rdquo;).&lt;/p&gt;</description>
-    </item>
-    
-  </channel>
+	<channel>
+		<title>Xbox on Artem Garmash</title>
+		<link>https://agarmash.com/tags/xbox/</link>
+		<description>Recent content in Xbox on Artem Garmash</description>
+		<generator>Hugo</generator>
+		<language>en</language>
+		
+		
+		
+		
+			<lastBuildDate>Wed, 25 Nov 2026 00:10:19 +0100</lastBuildDate>
+		
+			<atom:link href="https://agarmash.com/tags/xbox/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Frogger Beyond Exploit Pt. 2, or Playing With Bare-Metal x86</title>
+				<link>https://agarmash.com/posts/xbox-frogger-beyond-exploit-part-2/</link>
+				<pubDate>Wed, 25 Nov 2026 00:10:19 +0100</pubDate>
+				<guid>https://agarmash.com/posts/xbox-frogger-beyond-exploit-part-2/</guid>
+				<description>&lt;p&gt;&lt;em&gt;In this episode: a closer look at x86 memory segmentation and paging&lt;/em&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;a-foreword&#34;&gt;A Foreword&lt;/h2&gt;&#xA;&lt;p&gt;Since publishing the &lt;a href=&#34;https://agarmash.com/posts/xbox-frogger-beyond-exploit/&#34;&gt;original post&lt;/a&gt; I found a few things that weren&amp;rsquo;t entirely correct, or deserved a better explanation. I compiled and posted them as this post, and cross-referenced them in the original post marked with the word &amp;ldquo;Update&amp;rdquo; in bold. No parts of the exploit have been changed since the original release.&lt;/p&gt;&#xA;&lt;h2 id=&#34;double-fault-while-trying-to-execute-from-the-stack&#34;&gt;Double Fault while trying to execute from the stack&lt;/h2&gt;&#xA;&lt;p&gt;My &lt;a href=&#34;https://agarmash.com/posts/xbox-frogger-beyond-exploit/#returning-to-shellcode-take-2&#34;&gt;original attempt&lt;/a&gt; to run the bootstrap shellcode from the stack failed to work. Instead, it was generating a Double Fault exception. As we remember, there&amp;rsquo;s no NX bit feature in the CPU, so what&amp;rsquo;s blocking our attempts? The answer is actually simple - memory segmentation.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Exploiting Xbox Game Frogger Beyond to Execute Arbitrary Unsigned Code</title>
+				<link>https://agarmash.com/posts/xbox-frogger-beyond-exploit/</link>
+				<pubDate>Mon, 03 Oct 2022 20:20:19 +0100</pubDate>
+				<guid>https://agarmash.com/posts/xbox-frogger-beyond-exploit/</guid>
+				<description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;Update&lt;/strong&gt;: since publishing this post I found a few things that weren&amp;rsquo;t entirely correct, or deserved a bette explanation. I compiled and posted them &lt;a href=&#34;https://agarmash.com/posts/xbox-frogger-beyond-exploit-part-2/&#34;&gt;as an addition to this post&lt;/a&gt;, and cross-referenced them in this post marked with the word &amp;ldquo;Update&amp;rdquo; in bold. No parts of the exploit have been changed since the original release.&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;The Original Xbox was a &lt;a href=&#34;https://xboxdevwiki.net/17_Mistakes_Microsoft_Made_in_the_Xbox_Security_System&#34; target=&#34;_blank&#34;&gt;total disaster from a security point of view&lt;/a&gt;. It has been fully cracked relatively quickly, so it became possible to modify your system to disable the security checks and run the unsigned code: Linux, homebrew, game backups - you name it.&lt;/p&gt;&#xA;&lt;p&gt;For making that possible for the end user, 2 modding methods have been created:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Hardmod - requires soldering a modchip to the mainboard that contains the modified BIOS with security checks disabled and overrides the built-in flash memory. This is the most reliable and fool-proof method, but it requires modifying the hardware;&lt;/li&gt;&#xA;&lt;li&gt;Softmod - requires triggering a chain of exploits in software. Usually, a commercially available videogame with exploitable vulnerabilities in the savefile loading code is used as an entry point. Less reliable since the console can be bricked by doing something wrong (however, hardmod would fix it in any case), but doesn&amp;rsquo;t require any soldering iron involvement.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Even today, the softmod is a preferred method for a lot of people, so we&amp;rsquo;re going to take a look at how some parts of the softmod work, and create a brand new savefile exploit.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Patching Xbox Game Black to Disable Savefile Signature Checking</title>
+				<link>https://agarmash.com/posts/xbox-black-reverse-engineering/</link>
+				<pubDate>Thu, 09 Dec 2021 20:20:19 +0100</pubDate>
+				<guid>https://agarmash.com/posts/xbox-black-reverse-engineering/</guid>
+				<description>&lt;p&gt;&lt;em&gt;A story about reverse engineering and way too smart FTP client&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;Some time ago, I decided to swap HDD in my Original Xbox. It already has been upgraded with a 40 Gb IDE drive, but I had a spare 160 Gb SATA drive laying around and wanted to have some more storage in the system. I bought a SATA to IDE converter, swapped the drives, installed the system software, and transferred all the content back. To my utmost disappointment, savefiles for some games were corrupted. One of them was &lt;strong&gt;Black&lt;/strong&gt;, where I had a decent amount of played hours. I did some basic troubleshooting but wasn&amp;rsquo;t able to find the source of the problem. At that moment it was obvious to me that the problem lay in the new hard drive.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Building a Wireless Receiver for Xbox 360 Controllers From a Broken Xbox 360 Console</title>
+				<link>https://agarmash.com/posts/xbox-360-controller-receiver/</link>
+				<pubDate>Thu, 25 Feb 2021 09:08:19 +0300</pubDate>
+				<guid>https://agarmash.com/posts/xbox-360-controller-receiver/</guid>
+				<description>&lt;p&gt;I&amp;rsquo;ve accomplished this little project back in 2016 when I had two Xbox 360 wireless controllers and a huge desire to use them with a PC. To do so, you have to have a wireless receiver, and there were 2 mainstream options on the market:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;a genuine one - the best option, but costs around $60;&lt;/li&gt;&#xA;&lt;li&gt;an unofficial replica - can be found for $10-15, but reliability and driver support were quite questionable.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;At that moment, I was short of money to get the first one and didn&amp;rsquo;t want to try luck with the second. Fortunately, if you dive a bit deeper into the topic and doesn&amp;rsquo;t afraid to do some soldering, there&amp;rsquo;s a third option - using an RF module from a broken Xbox 360 (later in the text I&amp;rsquo;ll refer to it just as &amp;ldquo;RF module&amp;rdquo;).&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>

@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
-<meta name="generator" content="Hugo 0.101.0" />
+<meta name="generator" content="Hugo 0.169.0">
 
 
 
@@ -20,15 +20,15 @@
 
 
 
-<meta property="og:title" content="Xbox" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://agarmash.com/tags/xbox/" />
+<meta property="og:url" content="https://agarmash.com/tags/xbox/">
+	<meta property="og:site_name" content="Artem Garmash">
+	<meta property="og:title" content="Xbox">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="website">
 
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Xbox"/>
-<meta name="twitter:description" content=""/>
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Xbox">
 
 
 
@@ -72,9 +72,7 @@
     <header>
     <div class="container-lg clearfix">
         <div class="col-12 header">
-            <a class="title-main" href="https://agarmash.com">Artem Garmash</a>
-            
-            <span class="title-sub">Software developer, hardware enthusiast, mountain bike rider, musichead</span>
+            <a class="title-main" href="https://agarmash.com/">Artem Garmash</a>
             
         </div>
     </div>
@@ -94,14 +92,34 @@
 
 <div class="post">
     <h2 class="post-item post-title">
-        <a href="https://agarmash.com/posts/xbox-frogger-beyond-exploit/">Exploiting Xbox Game Frogger Beyond to Execute Arbitrary Unsigned Code</a>
+        <a href="https://agarmash.com/posts/xbox-frogger-beyond-exploit-part-2/">Frogger Beyond Exploit Pt. 2, or Playing With Bare-Metal x86</a>
     </h2>
     <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2022-10-03</span><span><i class="iconfont icon-time-sharp"></i>&nbsp;20 minutes</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/xbox">Xbox</a>&nbsp;<a href="/tags/exploitation">Exploitation</a>&nbsp;</span>
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2026-11-25</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1705 words</span><span><i class="iconfont icon-time-sharp"></i>&nbsp;9 minutes</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/xbox">Xbox</a>&nbsp;<a href="/tags/exploitation">Exploitation</a>&nbsp;</span>
 
     </div>
     <div class="post-item post-summary markdown-body">
-        <p>The Original Xbox was a <a href="https://xboxdevwiki.net/17_Mistakes_Microsoft_Made_in_the_Xbox_Security_System" target="_blank">total disaster from a security point of view</a>. It has been fully cracked relatively quickly, so it became possible to modify your system to disable the security checks and run the unsigned code: Linux, homebrew, game backups - you name it.</p>
+        <p><em>In this episode: a closer look at x86 memory segmentation and paging</em></p>
+<h2 id="a-foreword">A Foreword</h2>
+<p>Since publishing the <a href="/posts/xbox-frogger-beyond-exploit/">original post</a> I found a few things that weren&rsquo;t entirely correct, or deserved a better explanation. I compiled and posted them as this post, and cross-referenced them in the original post marked with the word &ldquo;Update&rdquo; in bold. No parts of the exploit have been changed since the original release.</p>
+<h2 id="double-fault-while-trying-to-execute-from-the-stack">Double Fault while trying to execute from the stack</h2>
+<p>My <a href="/posts/xbox-frogger-beyond-exploit/#returning-to-shellcode-take-2">original attempt</a> to run the bootstrap shellcode from the stack failed to work. Instead, it was generating a Double Fault exception. As we remember, there&rsquo;s no NX bit feature in the CPU, so what&rsquo;s blocking our attempts? The answer is actually simple - memory segmentation.</p>
+    </div>
+</div>
+
+<div class="post">
+    <h2 class="post-item post-title">
+        <a href="https://agarmash.com/posts/xbox-frogger-beyond-exploit/">Exploiting Xbox Game Frogger Beyond to Execute Arbitrary Unsigned Code</a>
+    </h2>
+    <div class="post-item post-meta">
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2022-10-03</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;4199 words</span><span><i class="iconfont icon-time-sharp"></i>&nbsp;20 minutes</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/xbox">Xbox</a>&nbsp;<a href="/tags/exploitation">Exploitation</a>&nbsp;</span>
+
+    </div>
+    <div class="post-item post-summary markdown-body">
+        <blockquote>
+<p><strong>Update</strong>: since publishing this post I found a few things that weren&rsquo;t entirely correct, or deserved a bette explanation. I compiled and posted them <a href="/posts/xbox-frogger-beyond-exploit-part-2/">as an addition to this post</a>, and cross-referenced them in this post marked with the word &ldquo;Update&rdquo; in bold. No parts of the exploit have been changed since the original release.</p>
+</blockquote>
+<p>The Original Xbox was a <a href="https://xboxdevwiki.net/17_Mistakes_Microsoft_Made_in_the_Xbox_Security_System" target="_blank">total disaster from a security point of view</a>. It has been fully cracked relatively quickly, so it became possible to modify your system to disable the security checks and run the unsigned code: Linux, homebrew, game backups - you name it.</p>
 <p>For making that possible for the end user, 2 modding methods have been created:</p>
 <ul>
 <li>Hardmod - requires soldering a modchip to the mainboard that contains the modified BIOS with security checks disabled and overrides the built-in flash memory. This is the most reliable and fool-proof method, but it requires modifying the hardware;</li>
@@ -116,7 +134,7 @@
         <a href="https://agarmash.com/posts/xbox-black-reverse-engineering/">Patching Xbox Game Black to Disable Savefile Signature Checking</a>
     </h2>
     <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2021-12-09</span><span><i class="iconfont icon-time-sharp"></i>&nbsp;8 minutes</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/xbox">Xbox</a>&nbsp;<a href="/tags/reverse-engineering">Reverse Engineering</a>&nbsp;</span>
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2021-12-09</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1543 words</span><span><i class="iconfont icon-time-sharp"></i>&nbsp;8 minutes</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/xbox">Xbox</a>&nbsp;<a href="/tags/reverse-engineering">Reverse Engineering</a>&nbsp;</span>
 
     </div>
     <div class="post-item post-summary markdown-body">
@@ -130,7 +148,7 @@
         <a href="https://agarmash.com/posts/xbox-360-controller-receiver/">Building a Wireless Receiver for Xbox 360 Controllers From a Broken Xbox 360 Console</a>
     </h2>
     <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2021-02-25</span><span><i class="iconfont icon-time-sharp"></i>&nbsp;6 minutes</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/xbox">Xbox</a>&nbsp;<a href="/tags/avr">AVR</a>&nbsp;</span>
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2021-02-25</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1107 words</span><span><i class="iconfont icon-time-sharp"></i>&nbsp;6 minutes</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/xbox">Xbox</a>&nbsp;<a href="/tags/avr">AVR</a>&nbsp;</span>
 
     </div>
     <div class="post-item post-summary markdown-body">
@@ -207,7 +225,7 @@
             </span>
             
             <span>
-                <a href="/tags/ipod/">iPod</a>
+                <a href="/tags/ipod/">IPod</a>
             </span>
             
             <span>
@@ -261,18 +279,6 @@
                 <a href="https://twitter.com/agarmash_" target="_blank"><span>Twitter</span></a>
             </li>
             
-            <li>
-                <a href="https://stackoverflow.com/users/7696358/artem-garmash" target="_blank"><span>Stack Overflow</span></a>
-            </li>
-            
-            <li>
-                <a href="https://www.strava.com/athletes/47538392" target="_blank"><span>Strava</span></a>
-            </li>
-            
-            <li>
-                <a href="https://www.last.fm/user/arch_saint" target="_blank"><span>Last.fm</span></a>
-            </li>
-            
         </ul>
     </div>
     
@@ -296,7 +302,7 @@
     <footer>
     <div class="container-lg clearfix">
         <div class="col-12 footer">
-            <span>&copy; 2022 <a href="https://agarmash.com">Artem Garmash</a> |
+            <span>&copy; 2026 <a href="https://agarmash.com/">Artem Garmash</a> |
                 Powered by <a href="https://gohugo.io/"
                 target="_blank">Hugo</a> & modified <a href="https://github.com/amzrk2/hugo-theme-fuji/"
                    target="_blank">Fuji-v2</a> </span>

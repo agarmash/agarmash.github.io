@@ -1,55 +1,38 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Swift on Artem Garmash</title>
-    <link>https://agarmash.com/tags/swift/</link>
-    <description>Recent content in Swift on Artem Garmash</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Sun, 26 Dec 2021 13:39:08 +0100</lastBuildDate><atom:link href="https://agarmash.com/tags/swift/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Trimming Audio Files and Adding Silence with AVFoundation in Swift</title>
-      <link>https://agarmash.com/posts/avfoundation-audio-trimming/</link>
-      <pubDate>Sun, 26 Dec 2021 13:39:08 +0100</pubDate>
-      
-      <guid>https://agarmash.com/posts/avfoundation-audio-trimming/</guid>
-      <description>&lt;blockquote&gt;
-&lt;p&gt;Originally posted in &lt;a href=&#34;https://akvelon.com/how-to-trim-audio-files-and-add-silence-with-avfoundation-in-swift&#34; target=&#34;_blank&#34;&gt;Akvelon Blog&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;While working on one of the apps, we faced the need to trim the recorded audio files. We were working with 32-bit float WAV files, and we had the following requirements:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;the output file should have the exact same format as the input file;&lt;/li&gt;
-&lt;li&gt;no processing should be applied to the audio data, audio samples should be copied as-is;&lt;/li&gt;
-&lt;li&gt;there should be an ability to add silence to the output file.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;My first guess was to use &lt;code&gt;AVAssetExportSession&lt;/code&gt;, but it has limited options for exporting the audio, and it’s not possible to be sure what it does with the audio under the hood. A no-go.&lt;/p&gt;
-&lt;p&gt;Secondly, I took a look at the requirements again. &amp;ldquo;Audio samples should be copied as-is&amp;rdquo;. That was exactly what we needed - to open the input file for reading, the output one for writing, calculate the range of audio samples to copy, and perform the actual copying. Fortunately, it was completely possible with &lt;code&gt;AVAudioFile&lt;/code&gt; - it can be read into &lt;code&gt;AVAudioPCMBuffer&lt;/code&gt; and written from one&amp;rsquo;s contents.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Using UISlider or UIProgressView to Display and Control the Playback Progress of AVAudioPlayer</title>
-      <link>https://agarmash.com/posts/avaudioplayer-playback-progress/</link>
-      <pubDate>Wed, 10 Mar 2021 13:39:08 +0300</pubDate>
-      
-      <guid>https://agarmash.com/posts/avaudioplayer-playback-progress/</guid>
-      <description>&lt;p&gt;While implementing audio playback with &lt;code&gt;AVAudioPlayer&lt;/code&gt;, you may need to display the playback progress with &lt;code&gt;UIProgressView&lt;/code&gt;, or even to synchronize the state of the player with &lt;code&gt;UISlider&lt;/code&gt;. &lt;code&gt;AVAudioPlayer&lt;/code&gt; doesn&amp;rsquo;t have any functionality to get periodically notified about the current playback position. However, it has 2 aptly named properties that represent the time of the current playback position and the duration of the audio file: &lt;code&gt;currentTime&lt;/code&gt; and &lt;code&gt;duration&lt;/code&gt; respectively.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>How to Integrate a C Library into an iOS App Written in Swift</title>
-      <link>https://agarmash.com/posts/c-library-in-swift/</link>
-      <pubDate>Wed, 30 Sep 2020 13:39:08 +0300</pubDate>
-      
-      <guid>https://agarmash.com/posts/c-library-in-swift/</guid>
-      <description>&lt;blockquote&gt;
-&lt;p&gt;Initially, I wrote this article for &lt;a href=&#34;https://medium.com/@distillerytech/how-to-integrate-a-c-library-into-an-ios-app-written-in-swift-ef92c0e0d42b&#34; target=&#34;_blank&#34;&gt;Distillery Tech Blog&lt;/a&gt; back in 2018. I decided to copy it here for the further preservation.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Nowadays, everyone values privacy and security. That’s why it wasn’t surprising when, recently, we needed to use an encryption library on one of the projects.&lt;/p&gt;
-&lt;p&gt;For the project in question, the decision was made to use libsignal. Originally developed for &lt;a href=&#34;https://apps.apple.com/us/app/signal-private-messenger/id874139669&#34; target=&#34;_blank&#34;&gt;Signal Private Messenger&lt;/a&gt;, libsignal has a good reputation among security specialists.&lt;/p&gt;
-&lt;h2 id=&#34;using-libsignal&#34;&gt;Using libsignal&lt;/h2&gt;
-&lt;p&gt;At the end of July 2018, there were implementations of libsignal in C, Java, and JavaScript. There was also an implementation in Objective-C called SignalProtocolKit, but at that time it had already been deprecated.&lt;/p&gt;
-&lt;p&gt;Our goal was to use the library in an iOS app written in Swift. To keep everything up to date, we had to use the one written in C, for which &lt;a href=&#34;https://github.com/signalapp/libsignal-protocol-c&#34; target=&#34;_blank&#34;&gt;the source code is stored here&lt;/a&gt;. Lucky for us, Swift can interact with C code very smoothly, at minimum because some of Apple’s low-level libraries are written in C. The tricky part was to add the library to the project correctly.&lt;/p&gt;</description>
-    </item>
-    
-  </channel>
+	<channel>
+		<title>Swift on Artem Garmash</title>
+		<link>https://agarmash.com/tags/swift/</link>
+		<description>Recent content in Swift on Artem Garmash</description>
+		<generator>Hugo</generator>
+		<language>en</language>
+		
+		
+		
+		
+			<lastBuildDate>Sun, 26 Dec 2021 13:39:08 +0100</lastBuildDate>
+		
+			<atom:link href="https://agarmash.com/tags/swift/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Trimming Audio Files and Adding Silence with AVFoundation in Swift</title>
+				<link>https://agarmash.com/posts/avfoundation-audio-trimming/</link>
+				<pubDate>Sun, 26 Dec 2021 13:39:08 +0100</pubDate>
+				<guid>https://agarmash.com/posts/avfoundation-audio-trimming/</guid>
+				<description>&lt;blockquote&gt;&#xA;&lt;p&gt;Originally posted in &lt;a href=&#34;https://akvelon.com/how-to-trim-audio-files-and-add-silence-with-avfoundation-in-swift&#34; target=&#34;_blank&#34;&gt;Akvelon Blog&lt;/a&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;While working on one of the apps, we faced the need to trim the recorded audio files. We were working with 32-bit float WAV files, and we had the following requirements:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;the output file should have the exact same format as the input file;&lt;/li&gt;&#xA;&lt;li&gt;no processing should be applied to the audio data, audio samples should be copied as-is;&lt;/li&gt;&#xA;&lt;li&gt;there should be an ability to add silence to the output file.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;My first guess was to use &lt;code&gt;AVAssetExportSession&lt;/code&gt;, but it has limited options for exporting the audio, and it’s not possible to be sure what it does with the audio under the hood. A no-go.&lt;/p&gt;&#xA;&lt;p&gt;Secondly, I took a look at the requirements again. &amp;ldquo;Audio samples should be copied as-is&amp;rdquo;. That was exactly what we needed - to open the input file for reading, the output one for writing, calculate the range of audio samples to copy, and perform the actual copying. Fortunately, it was completely possible with &lt;code&gt;AVAudioFile&lt;/code&gt; - it can be read into &lt;code&gt;AVAudioPCMBuffer&lt;/code&gt; and written from one&amp;rsquo;s contents.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Using UISlider or UIProgressView to Display and Control the Playback Progress of AVAudioPlayer</title>
+				<link>https://agarmash.com/posts/avaudioplayer-playback-progress/</link>
+				<pubDate>Wed, 10 Mar 2021 13:39:08 +0300</pubDate>
+				<guid>https://agarmash.com/posts/avaudioplayer-playback-progress/</guid>
+				<description>&lt;p&gt;While implementing audio playback with &lt;code&gt;AVAudioPlayer&lt;/code&gt;, you may need to display the playback progress with &lt;code&gt;UIProgressView&lt;/code&gt;, or even to synchronize the state of the player with &lt;code&gt;UISlider&lt;/code&gt;. &lt;code&gt;AVAudioPlayer&lt;/code&gt; doesn&amp;rsquo;t have any functionality to get periodically notified about the current playback position. However, it has 2 aptly named properties that represent the time of the current playback position and the duration of the audio file: &lt;code&gt;currentTime&lt;/code&gt; and &lt;code&gt;duration&lt;/code&gt; respectively.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>How to Integrate a C Library into an iOS App Written in Swift</title>
+				<link>https://agarmash.com/posts/c-library-in-swift/</link>
+				<pubDate>Wed, 30 Sep 2020 13:39:08 +0300</pubDate>
+				<guid>https://agarmash.com/posts/c-library-in-swift/</guid>
+				<description>&lt;blockquote&gt;&#xA;&lt;p&gt;Initially, I wrote this article for &lt;a href=&#34;https://medium.com/@distillerytech/how-to-integrate-a-c-library-into-an-ios-app-written-in-swift-ef92c0e0d42b&#34; target=&#34;_blank&#34;&gt;Distillery Tech Blog&lt;/a&gt; back in 2018. I decided to copy it here for the further preservation.&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;Nowadays, everyone values privacy and security. That’s why it wasn’t surprising when, recently, we needed to use an encryption library on one of the projects.&lt;/p&gt;&#xA;&lt;p&gt;For the project in question, the decision was made to use libsignal. Originally developed for &lt;a href=&#34;https://apps.apple.com/us/app/signal-private-messenger/id874139669&#34; target=&#34;_blank&#34;&gt;Signal Private Messenger&lt;/a&gt;, libsignal has a good reputation among security specialists.&lt;/p&gt;&#xA;&lt;h2 id=&#34;using-libsignal&#34;&gt;Using libsignal&lt;/h2&gt;&#xA;&lt;p&gt;At the end of July 2018, there were implementations of libsignal in C, Java, and JavaScript. There was also an implementation in Objective-C called SignalProtocolKit, but at that time it had already been deprecated.&lt;/p&gt;&#xA;&lt;p&gt;Our goal was to use the library in an iOS app written in Swift. To keep everything up to date, we had to use the one written in C, for which &lt;a href=&#34;https://github.com/signalapp/libsignal-protocol-c&#34; target=&#34;_blank&#34;&gt;the source code is stored here&lt;/a&gt;. Lucky for us, Swift can interact with C code very smoothly, at minimum because some of Apple’s low-level libraries are written in C. The tricky part was to add the library to the project correctly.&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>
